@@ -1,0 +1,11 @@
+.simulatorComponent{
+    width:100%;
+    height: 730px;
+    padding-top: 50px
+}
+.simulatorComponent div{
+    width:100%;
+    height: 730px;
+    padding-top: 50px;
+    flex-grow: 1;
+}
