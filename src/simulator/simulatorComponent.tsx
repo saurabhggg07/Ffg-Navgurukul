@@ -14,6 +14,7 @@ import currentFrameStore from "../stores/currentFrame.store";
 import {wait} from "@testing-library/user-event/dist/utils";
 import { useHistory } from "react-router-dom";
 import { play }from "../player/playerComponent";
+import startBlockly from "../core/blockly/startBlockly";
 
 Blockly.setLocale(En);
 function SimulatorComponent(){
@@ -80,7 +81,7 @@ function SimulatorComponent(){
                 currentFrame = frame;
                 update(draw, currentFrame);
                 // document.getElementById("container").innerHTML = draw.svg()
-                container.current.innerHTML = draw.svg()
+                if(container && container.current) container.current.innerHTML = draw.svg()
 
 
             })
