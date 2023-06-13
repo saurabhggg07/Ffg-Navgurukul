@@ -16,6 +16,7 @@
     "@types/node": "^16.18.31",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "react-router-dom": "v5",
     "blockly": "^5.20210325.1",
     "blockly-field-color-wheel": "^1.0.2",
     "lodash": "^4.17.21",

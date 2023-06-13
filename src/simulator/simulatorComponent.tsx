@@ -12,6 +12,8 @@ import update from "../core/virtual-circuit/update";
 import '@svgdotjs/svg.panzoom.js'
 import currentFrameStore from "../stores/currentFrame.store";
 import {wait} from "@testing-library/user-event/dist/utils";
+import { useHistory } from "react-router-dom";
+import { play }from "../player/playerComponent";
 
 Blockly.setLocale(En);
 function SimulatorComponent(){
@@ -24,30 +26,6 @@ function SimulatorComponent(){
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(()=>{
-        async function fetchData(){
-            try{
-                await import('@svgdotjs/svg.draggable.js');
-                await import('@svgdotjs/svg.panzoom.js');
-            }catch (e) {
-                onErrorMessage('Please refresh your browser and try again.', e);
-            }
-        }
-        fetchData().then(r => console.log("fetch done"))
-
-        let width = container.current.clientWidth || container.current.getBoundingClientRect().width - 10;
-        let height = container.current.clientHeight || container.current.getBoundingClientRect().height - 10;
-        let count = 0;
-
-        while (width < 0 || height < 0) {
-            console.log('waiting to load');
-            width = container.current.clientWidth - 10;
-            height = container.current.clientHeight - 10;
-            count += 1;
-            if (count > 1000) {
-                onErrorMessage('There is not enough room to render the Arduino', {});
-                return;
-            }
-        }
 
         draw = SVG()
             .addTo(document.getElementById("container"))
@@ -110,11 +88,21 @@ function SimulatorComponent(){
 
     },[])
 
+    const history = useHistory();
+
+    const home = () => {
+        history.push("/")
+    }
 
     return(
-        <div className="simulatorComponent" >
-            <div ref={container}  id="container"/>
-        </div>)
+        <React.Fragment>
+            <div ref={container} id="container" className="simulatorContainer" />
+            <div className="simulatorButton" style={{ right: "1vw", top: "1vh", position: "fixed" }}>
+                <button onClick={play} className="simulatorButton">Hit Me!</button>
+                <button onClick={home} className="simulatorButton">Back to Home</button>
+            </div>
+        </React.Fragment>
+    )
 
 }
 

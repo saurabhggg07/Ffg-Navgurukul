@@ -1,4 +1,10 @@
 .blocklyContainer{
-    width: 50%;
-    height:820px;
+    width: 100vw;
+    height:100vh;
+}
+
+.virtualCircuitButton{
+    font-size:1vw;
+    width: 10vw;
+    height: 2.5vh;
 }

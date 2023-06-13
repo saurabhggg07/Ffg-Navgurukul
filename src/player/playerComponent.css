@@ -1,13 +1,4 @@
-.playerComponent{
-    width:100%;
-    height: 150px;
-}
-
-.playerComponent div{
-    width:100%;
-    height: 150px;
-    align-self: center;
-    align-items: center;
-    align-content: center;
-    flex-grow: 1;
+.playerContainer{
+    width: 5vw;
+    height: 5vh;
 }

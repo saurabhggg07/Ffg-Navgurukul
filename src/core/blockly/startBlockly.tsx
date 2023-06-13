@@ -21,7 +21,7 @@ const startBlockly = (blocklyElement) => {
     addListener(workspace);
     registerCodeMenu(workspace);
 
-    const arduinoBlock = createBlock('arduino_loop',50,151,false)
+    const arduinoBlock = createBlock('arduino_loop',0,0,false)
 
     createLedWithDelay(0.2,false)
     createLedWithDelay(0.2,true)
@@ -53,15 +53,12 @@ const createBlockConfig = (): BlocklyOptions =>{
         sounds: true,
         theme,
         oneBasedIndex: true,
-        grid: {
-            spacing: 20,
-            length: 1,
-            colour: '#888',
-            snap: false,
+        move: {
+            scrollbars: false,
         },
         zoom: {
             controls: true,
-            wheel: true,
+            wheel: false,
             startScale: 1,
             maxScale: 3,
             minScale: 0.3,

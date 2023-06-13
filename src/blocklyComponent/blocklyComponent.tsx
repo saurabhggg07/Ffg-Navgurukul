@@ -16,6 +16,7 @@ import {
 import {addListener, createFrames} from "../core/blockly/registerEvents";
 import update from "../core/virtual-circuit/update";
 import {draw} from "svelte/transition";
+import { useHistory } from "react-router-dom";
 Blockly.setLocale(En);
 function resizeBlockly() {
     Blockly.svgResize(Blockly.getMainWorkspace() as WorkspaceSvg);
@@ -51,10 +52,17 @@ const BlocklyComponents = () => {
         );
     },[loadEl])
 
+    const history = useHistory();
+    const navigateToVirtualCircuit = () => {
+        history.push("/virtual-circuit")
+    }
 
     return(
         <React.Fragment>
             <div ref={blocklyElement}  id="blocklyElement" className="blocklyContainer"></div>
+            <div className="injectionDiv geras-renderer classic-theme virtualCircuitButton" style={{ right: "1vw", top: "1vh", position: "absolute"}}>
+                <button onClick={navigateToVirtualCircuit} className="virtualCircuitButton">Hit Me!</button>
+            </div>
         </React.Fragment>)
 }
 
