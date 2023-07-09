@@ -92,7 +92,7 @@ function SimulatorComponent(){
     const history = useHistory();
 
     const home = () => {
-        history.push("/")
+        history.push("/blockly-home")
     }
 
     return(
