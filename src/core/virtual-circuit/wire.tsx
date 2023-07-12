@@ -1,5 +1,5 @@
 import type {Breadboard, BreadBoardArea, MicroController} from "../microcontroller/microcontroller";
-import _ from "lodash";
+import * as _ from "lodash";
 import {Element, Svg} from "@svgdotjs/svg.js";
 import {findArduinoConnectionCenter, findComponentConnection, findSvgElement} from "./svg-helpers";
 import resistorSvg from "../virtual-circuit/commonsvgs/resistors/resistor-small.svg";

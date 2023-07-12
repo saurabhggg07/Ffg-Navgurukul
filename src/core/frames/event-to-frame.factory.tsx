@@ -7,7 +7,7 @@ import {
     Timeline
 } from "./arduino.frames";
 import {BlockData, BlockType} from "../blockly/dto/block.type";
-import _ from "lodash";
+import * as _ from "lodash";
 import {generateFrame, generateInputFrame} from "./transformer/block-to-frame.transformer";
 import {
     findArduinoLoopBlock,

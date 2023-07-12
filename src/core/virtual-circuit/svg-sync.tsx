@@ -3,7 +3,7 @@ import {Element, Svg} from "@svgdotjs/svg.js";
 import {arduinoComponentStateToId} from "../frames/arduino-component-id";
 import {resetLed, updateLed} from "../../blocks/led/virtual-circuit";
 import {ArduinoComponentState, ArduinoComponentType, ArduinoFrame} from "../frames/arduino.frames";
-import _ from "lodash";
+import * as _ from "lodash";
 
 
 const resetComponent = {

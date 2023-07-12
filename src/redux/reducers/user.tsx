@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 
-import {set, setIn} from 'timm';
+import {set} from 'timm';
 import {createSelector} from 'reselect';
 import {loginFromGoogle, setCurrentUser} from "../actions/user";
 export const initialState = {

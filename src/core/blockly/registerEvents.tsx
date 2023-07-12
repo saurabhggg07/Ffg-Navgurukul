@@ -29,7 +29,7 @@ import {updateSensorSetupFields} from "./actions/updateSensorSetupFields";
 import {eventToFrameFactory} from "../frames/event-to-frame.factory";
 import {getArduinoCode, getWorkspace} from "./helpers/workspace.helper";
 import Blockly, {WorkspaceSvg} from "blockly";
-import _ from "lodash";
+import * as _ from "lodash";
 import {Settings} from "../../arduinoSettings/boardSetting";
 import settingsStore from "../../stores/settings.store";
 import getAll = Blockly.Workspace.getAll;

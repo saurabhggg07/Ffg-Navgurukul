@@ -1,7 +1,7 @@
 import {BlockSvg, VariableModel} from "blockly";
 import {MicroControllerType} from "../../microcontroller/microcontroller";
 import {transformBlock} from "./block.transformer";
-import _ from "lodash";
+import * as _ from "lodash";
 import {transformVariable} from "../../transformers/variables.transformer";
 import {BlockEvent} from "../dto/event.type";
 

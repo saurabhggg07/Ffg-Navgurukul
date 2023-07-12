@@ -1,6 +1,6 @@
 import type { BlockEvent } from "../../dto/event.type";
 import { DisableBlock, ActionType } from "../actions";
-import _ from "lodash";
+import * as _ from "lodash";
 
 /**
  * Disables blocks where both the same pins where selected in the block.

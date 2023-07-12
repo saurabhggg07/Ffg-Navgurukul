@@ -6,7 +6,7 @@ import {
 } from "../../dto/block.type";
 import { ActionType, DisableBlock } from "../actions";
 
-import _ from "lodash";
+import * as _ from "lodash";
 
 /**
  * Disable Sensor Read blocks that do not have the right pin selected.

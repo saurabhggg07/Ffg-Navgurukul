@@ -1,6 +1,6 @@
 import type { BlockEvent } from "../dto/event.type";
 import { ForLoopTextChange, ActionType } from "./actions";
-import _ from "lodash";
+import * as _ from "lodash";
 // Changes the text on the for loop block to adding or subtracting
 // Depending on whether the from is greater than to.
 const updateForLoopText = (blockEvent: BlockEvent): ForLoopTextChange[] => {

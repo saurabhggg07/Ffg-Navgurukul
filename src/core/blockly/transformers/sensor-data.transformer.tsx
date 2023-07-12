@@ -1,4 +1,4 @@
-import _ from "lodash";
+import * as _ from "lodash";
 import {timeSetupBlockToComponentState} from "../../../blocks/time/setupblocktocomponentstate";
 import {BlockData} from "../dto/block.type";
 import {ArduinoComponentState, Timeline} from "../../frames/arduino.frames";

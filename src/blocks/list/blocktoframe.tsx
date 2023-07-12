@@ -1,16 +1,16 @@
-import _ from "lodash";
+import * as _ from "lodash";
 import type { BlockData } from "../../core/blockly/dto/block.type";
 import {
   VariableData,
   VariableTypes,
 } from "../../core/blockly/dto/variable.type";
-import { findFieldValue } from "../../core/blockly/helpers/block-data.helper";
+import { findFieldValue } from "../../core/blockly/helpers/block-data.helpers";
 import type {
   ArduinoFrame,
   Color,
   Timeline,
   Variable,
-} from "../../core/frames/arduino.frame";
+} from "../../core/frames/arduino.frames";
 import type { BlockToFrameTransformer } from "../../core/frames/transformer/block-to-frame.transformer";
 import { getInputValue } from "../../core/frames/transformer/block-to-value.factories";
 import {

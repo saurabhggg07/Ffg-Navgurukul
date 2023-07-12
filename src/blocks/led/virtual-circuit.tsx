@@ -9,7 +9,7 @@ import type {
 } from "../../core/virtual-circuit/svg-create";
 
 import type { Element, Svg, Text } from "@svgdotjs/svg.js";
-import _ from "lodash";
+import * as _ from "lodash";
 import { positionComponent } from "../../core/virtual-circuit/svg-position";
 import { arduinoComponentStateToId } from "../../core/frames/arduino-component-id";
 import type { LedState } from "./state";

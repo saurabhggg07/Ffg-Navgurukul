@@ -6,7 +6,7 @@ import {
 } from "../../core/microcontroller/microcontroller";
 import type { MicroController } from "../../core/microcontroller/microcontroller";
 // @ts-ignore
-import _ from "lodash";
+import * as _ from "lodash";
 
 enum WIRE_COLORS {
     PURPLE = "#B637CC",

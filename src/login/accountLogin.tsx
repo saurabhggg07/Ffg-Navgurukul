@@ -6,6 +6,8 @@ import {getProfileStateSelector, getUserStateSelector} from "../redux/reducers/u
 import userAction, {loginFromGoogle, setCurrentUser} from '../redux/actions/user';
 import * as propTypes from 'prop-types';
 import { useHistory } from "react-router-dom";
+import React from 'react';
+import {is_empty} from "svelte/internal";
 const AccountLogin = () => {
 
     const history = useHistory();
@@ -49,7 +51,7 @@ const AccountLogin = () => {
             <h2>Navgurukul-Arduino Playground Google Login</h2>
             <br />
             <br />
-            {profile ? (
+            {profile && !is_empty(profile)? (
                 <div>
                     <img src={profile.picture} alt="user image" />
                     <h3>User Logged in</h3>

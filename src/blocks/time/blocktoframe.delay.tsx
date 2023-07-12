@@ -1,6 +1,6 @@
 import {BlockToFrameTransformer} from "../../core/frames/transformer/block-to-frame.transformer";
 import {getInputValue} from "../../core/frames/transformer/block-to-value.factories";
-import _ from "lodash";
+import * as _ from "lodash";
 
 
 export const delayBlock: BlockToFrameTransformer = (

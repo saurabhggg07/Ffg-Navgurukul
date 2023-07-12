@@ -1,5 +1,5 @@
 import {ArduinoComponentState, ArduinoComponentType} from "./arduino.frames";
-import _ from "lodash";
+import * as _ from "lodash";
 
 export interface ComponentStateToId {
     (state: ArduinoComponentState): string;

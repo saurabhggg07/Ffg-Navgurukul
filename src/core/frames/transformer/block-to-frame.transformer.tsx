@@ -2,7 +2,7 @@ import { BlockData } from "../../blockly/dto/block.type";
 import {VariableData} from "../../blockly/dto/variable.type";
 import {ArduinoFrame, Timeline} from "../arduino.frames";
 import {timeSetup} from "../../../blocks/time/blocktoframe.time";
-import _ from "lodash";
+import * as _ from "lodash";
 import {findBlockById, findInputStatementStartBlock} from "../../blockly/helpers/block-data.helpers";
 import {ifElse} from "../../../blocks/logic/blocktoframe";
 import {delayBlock} from "../../../blocks/time/blocktoframe.delay";

@@ -1,6 +1,6 @@
 import Blockly,{ BlockSvg} from "blockly";
 import {BlockData, BlocklyInputTypes, blocksToBlockTypes, FieldValue, Input, InputStatement} from "../dto/block.type";
-import _ from "lodash";
+import * as _ from "lodash";
 import {ARDUINO_PINS} from "../../microcontroller/selectBoard";
 
 

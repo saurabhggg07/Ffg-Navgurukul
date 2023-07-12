@@ -1,6 +1,6 @@
 import type { BlockEvent } from "../../dto/event.type";
 import { DisableBlock, ActionType } from "../actions";
-import _ from "lodash";
+import * as _ from "lodash";
 import {
   PinCategory,
   BlockData,

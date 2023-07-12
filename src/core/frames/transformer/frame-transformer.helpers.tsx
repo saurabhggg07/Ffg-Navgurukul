@@ -1,8 +1,9 @@
 import {BlockData} from "../../blockly/dto/block.type";
 import {findBlockById} from "../../blockly/helpers/block-data.helpers";
-import {ArduinoComponentState, ArduinoFrame, Timeline, Variable} from "../arduino.frames";
+import {ArduinoComponentState, ArduinoFrame, Color, Timeline, Variable} from "../arduino.frames";
 import {arduinoComponentStateToId} from "../arduino-component-id";
-import _ from "lodash";
+import * as _ from "lodash";
+import {VariableTypes} from "../../blockly/dto/variable.type";
 
 export const findBlockInput = (
     blocks: BlockData[],
@@ -114,4 +115,37 @@ export const arduinoFrameByVariable = (
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
     };
+};
+
+export const getDefaultValueList = (type: VariableTypes) => {
+    switch (type) {
+        case VariableTypes.COLOUR:
+            return { red: 0, green: 0, blue: 0 };
+        case VariableTypes.STRING:
+            return "";
+        case VariableTypes.BOOLEAN:
+            return false;
+        case VariableTypes.NUMBER:
+            return 0;
+        default:
+            return undefined;
+    }
+};
+
+export const valueToString = (
+    value: Color | string | boolean | number,
+    type: VariableTypes
+) => {
+    if (type === VariableTypes.COLOUR) {
+        const color = value as Color;
+        return value
+            ? `(red=${color.red},green=${color.green},blue=${color.blue})`
+            : "(red=0,green=0,blue=0)";
+    }
+
+    if (type === VariableTypes.STRING) {
+        return `"${value}"`;
+    }
+
+    return value;
 };

@@ -1,6 +1,6 @@
 import Blockly from "blockly";
 import type { Block } from "blockly";
-import _ from "lodash";
+import * as _ from "lodash";
 
 Blockly["Arduino"]["arduino_setup"] = function (block: Block) {
     const statementsSetup = Blockly["Arduino"].statementToCode(block, "setup");
