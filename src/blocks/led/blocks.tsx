@@ -23,7 +23,7 @@ Blockly.Blocks["led"] = {
             );
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(COLOR_THEME.COMPONENTS);
+        this.setColour(COLOR_THEME.DARK_ORANGE);
         this.setTooltip("");
         this.setHelpUrl("");
     },
@@ -44,7 +44,7 @@ Blockly.Blocks["led_fade"] = {
             .appendField("to ");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(COLOR_THEME.COMPONENTS);
+        this.setColour(COLOR_THEME.DARK_ORANGE);
         this.setTooltip("");
         this.setHelpUrl("");
     },

@@ -1,6 +1,6 @@
 import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
-export default `<category name="Loops" colour="${COLOR_THEME.CONTROL}">
+export default `<category name="Loops" colour="${COLOR_THEME.PURPLE}">
      <block type="controls_repeat_ext">
        <value name="TIMES">
          <block type="math_number">
@@ -28,4 +28,4 @@ export default `<category name="Loops" colour="${COLOR_THEME.CONTROL}">
        </value>
      </block>
    </category>
-`;
+`+`<sep></sep>`;

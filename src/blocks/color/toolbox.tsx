@@ -1,6 +1,6 @@
 import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
-export default `<category name="Color" colour="${COLOR_THEME.VALUES}">
+export default `<category name="Color" colour="${COLOR_THEME.PINK}">
 <block type="color_picker_custom"></block>
 <block type="colour_random"></block>
        <block type="colour_rgb">
@@ -22,4 +22,4 @@ export default `<category name="Color" colour="${COLOR_THEME.VALUES}">
          </value>
        </block>
      </category>
-`;
+`+ `<sep></sep>`;
