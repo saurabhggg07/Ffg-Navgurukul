@@ -5,6 +5,7 @@ import BlocklyComponent from "./blocklyComponent/blocklyComponent";
 import SimulatorComponent from "./simulator/simulatorComponent";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccountLogin from "./login/accountLogin";
+import BurningArduino from "./burningArduino/burningArduino";
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
 
         <Route exact path="/virtual-circuit"
           component={SimulatorComponent} />
+          <Route exact path="/burn-code"
+                 component={BurningArduino}/>
       </Switch>
     </Router>
   );

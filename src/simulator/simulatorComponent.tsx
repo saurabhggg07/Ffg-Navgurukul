@@ -94,6 +94,9 @@ function SimulatorComponent(){
     const home = () => {
         history.push("/blockly-home")
     }
+    const burn = () => {
+        history.push("/burn-code")
+    }
 
     return(
         <React.Fragment>
@@ -101,6 +104,7 @@ function SimulatorComponent(){
             <div className="simulatorButton" style={{ right: "1vw", top: "1vh", position: "fixed" }}>
                 <button onClick={play} className="simulatorButton">Hit Me!</button>
                 <button onClick={home} className="simulatorButton">Back to Home</button>
+                <button onClick={burn}>Burn Code</button>
             </div>
         </React.Fragment>
     )
