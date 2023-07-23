@@ -117,6 +117,20 @@ export const arduinoFrameByVariable = (
     };
 };
 
+export const findComponent = <T extends ArduinoComponentState>(
+    state: ArduinoFrame,
+    type: ArduinoComponentType,
+    pin: ARDUINO_PINS = undefined
+  ) => {
+    if (pin !== undefined) {
+      return state.components.find(
+        (c) => c.type === type && c.pins.includes(pin)
+      ) as T;
+    }
+  
+    return state.components.find((c) => c.type === type) as T;
+  };
+
 export const getDefaultValueList = (type: VariableTypes) => {
     switch (type) {
         case VariableTypes.COLOUR:
