@@ -8,6 +8,10 @@ export const arduinoLoopBlockShowNumberOfTimesThroughLoop = () => {
     return;
 };
 
+export const getTimesThroughLoop = (): number => {
+    return +getBlockByType('arduino_loop').getFieldValue('LOOP_TIMES');
+  };
+
 export const arduinoLoopBlockShowLoopForeverText = () => {
     const block = getBlockByType('arduino_loop');
 

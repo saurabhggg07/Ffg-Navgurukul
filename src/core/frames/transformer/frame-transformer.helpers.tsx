@@ -1,9 +1,17 @@
 import {BlockData} from "../../blockly/dto/block.type";
 import {findBlockById} from "../../blockly/helpers/block-data.helpers";
-import {ArduinoComponentState, ArduinoFrame, Color, Timeline, Variable} from "../arduino.frames";
+import type {
+    ArduinoFrame,
+    Timeline,
+    ArduinoComponentState,
+    Variable,
+    Color,
+    ArduinoComponentType,
+  } from "../arduino.frames";
 import {arduinoComponentStateToId} from "../arduino-component-id";
 import * as _ from "lodash";
 import {VariableTypes} from "../../blockly/dto/variable.type";
+import type { ARDUINO_PINS } from "../../microcontroller/selectBoard";
 
 export const findBlockInput = (
     blocks: BlockData[],
