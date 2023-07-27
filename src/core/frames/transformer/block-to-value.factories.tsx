@@ -13,6 +13,7 @@ import {
 } from "../../../blocks/math/blocktovalue";
 import {logicBoolean, logicCompare, logicNot, logicOperation} from "../../../blocks/logic/blocktovalue";
 import {timeSeconds} from "../../../blocks/time/blocktovalue.time_seconds";
+import { isButtonPressed } from "../../../blocks/button/blocktovalue";
 
 export interface ValueGenerator {
     (
@@ -44,9 +45,9 @@ export const valueList: { [blockName: string]: ValueGenerator } = {
     logic_compare: logicCompare,
     logic_operation: logicOperation,
     logic_negate: logicNot,
-
-
-
+    
+    is_button_pressed: isButtonPressed, 
+    
     color_picker_custom: colorPicker,
     colour_random: randomColor,
     colour_rgb: rgbColor,
