@@ -8,6 +8,7 @@ import {ifElse} from "../../../blocks/logic/blocktoframe";
 import {delayBlock} from "../../../blocks/time/blocktoframe.delay";
 import {forLoop, simpleLoop} from "../../../blocks/loops/blocktoframe";
 import {led} from "../../../blocks/led/blocktoframe";
+import { buttonSetup } from "../../../blocks/button/blocktoframe";
 
 export interface BlockToFrameTransformer {
     (
@@ -50,6 +51,7 @@ const blockToFrameTransformerList: {
     controls_for: forLoop,
     delay_block: delayBlock,
     led: led,
+    button_setup: buttonSetup,
 };
 
 export const generateInputFrame = (

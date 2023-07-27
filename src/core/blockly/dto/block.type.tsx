@@ -25,6 +25,15 @@ export enum PinCategory {
     DIGITAL_DISPLAY = "DIGITAL_DISPLAY",
     JOYSTICK = "JOYSTICK",
 }
+export const standAloneBlocks = [
+    "button_setup",
+];
+
+  export const sensorSetupBlocks = [
+    "button_setup",
+  ];
+  
+
 export enum BlockType {
     SETUP = "SETUP",
     SENSOR_SETUP = "SENSOR_SETUP",

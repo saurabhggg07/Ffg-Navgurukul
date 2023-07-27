@@ -1,5 +1,7 @@
 import * as _ from "lodash";
 import {timeSetupBlockToComponentState} from "../../../blocks/time/setupblocktocomponentstate";
+import { buttonSetupBlockToSensorData } from "../../../blocks/button/setupblocktosensordata";
+import { buttonSetupBlockToComponentState } from "../../../blocks/button/setupblocktocomponentstate";
 import {BlockData} from "../dto/block.type";
 import {ArduinoComponentState, Timeline} from "../../frames/arduino.frames";
 import {Sensor} from "../dto/sensor.type";
@@ -17,7 +19,7 @@ const blockToSensorComponent: {
     [blockName: string]: BlockToComponentState;
 } = {
     time_setup: timeSetupBlockToComponentState,
-
+    button_setup: buttonSetupBlockToComponentState,
 };
 export const sensorSetupBlockName = _.keys(blockToSensorComponent);
 
@@ -43,6 +45,7 @@ export const convertToState = (
 
 const blockToSensorData: { [blockName: string]: RetrieveSensorData } = {
     time_setup: timeSetupBlockToSensorData,
+    button_setup: buttonSetupBlockToSensorData,
 };
 
 export const convertToSensorData = (block: BlockData): Sensor => {

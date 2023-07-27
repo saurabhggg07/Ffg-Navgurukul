@@ -5,6 +5,7 @@ import mathXMLString from '../blocks/math/toolbox'
 import textXMLString from '../blocks/text/toolbox'
 import timeXMLString from '../blocks/time/toolbox'
 import ledXMLString from '../blocks/led/toolbox'
+import buttonXMLString from '../blocks/button/toolbox'
 import {COLOR_THEME} from "../core/blockly/constants/colors";
 export interface ToolBoxEntries {
     category: ToolBoxCategory;
@@ -65,7 +66,15 @@ const defaultToolbox: ToolBoxEntries[] = [
         toolBoxEntries: [
             { name: 'Led', xml: ledXMLString },
         ],
-    }
+    },
+    {
+        color: COLOR_THEME.SENSOR,
+        category: ToolBoxCategory.SENSORS,
+        name: 'Sensors',
+        toolBoxEntries: [
+          { name: 'Button', xml: buttonXMLString },
+        ],
+      },
 ];
 function getMenuItems(toolBoxEntries: ToolBoxEntry[]) {
     return toolBoxEntries.reduce((acc, next) => {
