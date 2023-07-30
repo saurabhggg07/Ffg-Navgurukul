@@ -10,6 +10,7 @@ import {addDraggableEvent} from "./component-events.helpers";
 import {createWiresLed, ledCreate, ledPosition} from "../../blocks/led/virtual-circuit";
 import {ArduinoComponentState, ArduinoComponentType} from "../frames/arduino.frames";
 import {Settings} from "../../arduinoSettings/boardSetting";
+import {createButton, createWiresButton, positionButton} from "../../blocks/pushButton/virtual-circuit";
 
 export default (
     state: ArduinoComponentState,
@@ -74,6 +75,7 @@ const positionComponentHookFunc: {
 } = {
 
     [ArduinoComponentType.LED]: ledPosition,
+    [ArduinoComponentType.BUTTON]: positionButton,
 };
 
 export interface PositionComponent<T extends ArduinoComponentState>  {
@@ -102,12 +104,14 @@ export interface CreateWire<T extends ArduinoComponentState>{
 
 const createWires: { [key: string]: CreateWire<ArduinoComponentState> } = {
     [ArduinoComponentType.LED]: createWiresLed,
+    [ArduinoComponentType.BUTTON]: createWiresButton,
 };
 
 const createComponentHookFunc: {
     [key: string]: AfterComponentCreateHook<ArduinoComponentState>;
 } = {
     [ArduinoComponentType.LED]: ledCreate,
+    [ArduinoComponentType.BUTTON]: createButton,
 
 };
 

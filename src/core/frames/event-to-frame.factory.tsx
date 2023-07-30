@@ -25,6 +25,7 @@ export const eventToFrameFactory = (
 
     const preSetupBlockType = [
         BlockType.SENSOR_SETUP,
+        BlockType.SENSOR_CONTROL,
         BlockType.SETUP,
         BlockType.LIST_CREATE,
     ];

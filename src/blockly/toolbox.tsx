@@ -6,6 +6,7 @@ import textXMLString from '../blocks/text/toolbox'
 import timeXMLString from '../blocks/time/toolbox'
 import ledXMLString from '../blocks/led/toolbox'
 import {COLOR_THEME} from "../core/blockly/constants/colors";
+import buttonXMLString from "../blocks/pushButton/toolbox";
 export interface ToolBoxEntries {
     category: ToolBoxCategory;
     name: string;
@@ -64,8 +65,9 @@ const defaultToolbox: ToolBoxEntries[] = [
         name: 'Add-ons',
         toolBoxEntries: [
             { name: 'Led', xml: ledXMLString },
+            { name: 'pushButton', xml: buttonXMLString },
         ],
-    }
+    },
 ];
 function getMenuItems(toolBoxEntries: ToolBoxEntry[]) {
     return toolBoxEntries.reduce((acc, next) => {

@@ -101,3 +101,9 @@ export const SENSOR_COMPONENTS = [
     ArduinoComponentType.THERMISTOR,
     ArduinoComponentType.JOYSTICK,
 ];
+
+export interface Timeline {
+    iteration: number;
+
+    function: "setup" | "loop" | "pre-setup";
+}
