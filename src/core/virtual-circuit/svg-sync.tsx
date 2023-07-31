@@ -3,11 +3,13 @@ import {Element, Svg} from "@svgdotjs/svg.js";
 import {arduinoComponentStateToId} from "../frames/arduino-component-id";
 import {resetLed, updateLed} from "../../blocks/led/virtual-circuit";
 import {ArduinoComponentState, ArduinoComponentType, ArduinoFrame} from "../frames/arduino.frames";
+import { resetButton, updateButton } from "../../blocks/button/virtual-circuit";
 import * as _ from "lodash";
 
 
 const resetComponent = {
-    [ArduinoComponentType.LED]: resetLed
+    [ArduinoComponentType.LED]: resetLed,
+    [ArduinoComponentType.BUTTON]: resetButton
 };
 
 export interface ResetComponent {
@@ -25,6 +27,7 @@ export interface SyncComponent {
 
 const syncComponent = {
     [ArduinoComponentType.LED]: updateLed,
+    [ArduinoComponentType.BUTTON]: updateButton
 
 };
 export const syncComponents = (frame: ArduinoFrame, draw: Svg) => {
