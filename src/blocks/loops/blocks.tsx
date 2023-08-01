@@ -1,5 +1,4 @@
 import Blockly from "blockly";
-import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
 Blockly.defineBlocksWithJsonArray([
     {
@@ -46,7 +45,7 @@ Blockly.defineBlocksWithJsonArray([
         ],
         previousStatement: null,
         nextStatement: null,
-        colour: COLOR_THEME.CONTROL,
+        style: "loop_blocks",
         helpUrl: "%{BKY_CONTROLS_FOR_HELPURL}",
         extensions: ["contextMenu_newGetVariableBlock", "controls_for_tooltip"],
     },

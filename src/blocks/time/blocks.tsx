@@ -1,5 +1,4 @@
 import Blockly from "blockly";
-import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
 Blockly.defineBlocksWithJsonArray([
     {
@@ -16,7 +15,7 @@ Blockly.defineBlocksWithJsonArray([
             },
         ],
         output: "Number",
-        colour: COLOR_THEME.ARDUINO,
+        style: "time_blocks",
         tooltip: "",
         helpUrl: "",
     },
@@ -40,7 +39,7 @@ Blockly.defineBlocksWithJsonArray([
         ],
         previousStatement: null,
         nextStatement: null,
-        colour: COLOR_THEME.ARDUINO,
+        style: "time_blocks",
         tooltip: "",
         helpUrl: "",
     },
@@ -59,7 +58,7 @@ const timeSetupBlock: any = {
                 "time_in_seconds"
             );
 
-        this.setColour(COLOR_THEME.ARDUINO);
+        this.setStyle("time_blocks");
         this.setTooltip("");
         this.setHelpUrl("");
     },

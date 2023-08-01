@@ -1,7 +1,7 @@
 import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
 export default `
-<category name="Text" colour="${COLOR_THEME.VALUES}">
+<category name="Text" colour="${COLOR_THEME.ORANGE}">
    <block type="text"></block>
    <block type="text_join">
       <comment pinned="false" h="60" w="460">Turns multiple text blocks into one text block.</comment>
@@ -57,4 +57,4 @@ Let’s say you have 5.23234, and you specify 2 for the precision.  The text blo
      </value>
    </block>
    </category>
-`;
+`+`<sep></sep>`;

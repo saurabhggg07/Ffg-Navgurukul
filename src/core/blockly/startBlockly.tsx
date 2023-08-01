@@ -51,7 +51,7 @@ const createBlockConfig = (): BlocklyOptions =>{
         media: 'https://blockly-demo.appspot.com/static/media/',
         rtl: false,
         sounds: true,
-        theme,
+        theme: theme,
         oneBasedIndex: true,
         move: {
             scrollbars: false,

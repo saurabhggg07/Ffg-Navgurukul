@@ -1,10 +1,19 @@
-.simulatorContainer{
-    width:100vw;
-    height: 100vh;
+.simulator {
+    width: 70vw;
+    height: 95vh;
+    position: absolute;
+    margin: auto;
 }
 
-.simulatorButton{
-    font-size:1vw;
-    width: 10vw;
-    height: 2.5vh;
+.simulatorIcons {
+    position: absolute;
+    right: 0vw;
+    bottom: 5vh;
+    height: 20vh;
+    width: 8vw;
+}
+
+.simulatorIcon {
+    width: 7vw;
+    height: 4vh;
 }
