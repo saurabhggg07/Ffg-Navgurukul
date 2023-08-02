@@ -178,6 +178,7 @@ export const createFrames = async (blocklyEvent) => {
     // TODO
     codeStore.set({ code: getArduinoCode(), boardType: microControllerType });
     codeStore.subscribe((value) => {
+        console.log("The value is code store is : ");
         console.log(value);
       });
 };
