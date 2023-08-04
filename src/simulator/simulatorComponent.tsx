@@ -13,9 +13,9 @@ import '@svgdotjs/svg.panzoom.js'
 import currentFrameStore from "../stores/currentFrame.store";
 import {wait} from "@testing-library/user-event/dist/utils";
 import { useHistory } from "react-router-dom";
-import { play }from "../player/playerComponent";
+import { play , stop }from "../player/playerComponent";
 import startBlockly from "../core/blockly/startBlockly";
-import {BsFillPlayCircleFill, BsPlusCircle, BsDashCircle} from "react-icons/bs";
+import {BsFillPlayCircleFill, BsPlusCircle, BsDashCircle, BsFillStopCircleFill} from "react-icons/bs";
 import { BiTargetLock } from "react-icons/bi";
 
 Blockly.setLocale(En);
@@ -116,6 +116,7 @@ function SimulatorComponent(){
             <div ref={container} id="container" className="simulator" />
             <div className="simulatorIcons">
                 <BsFillPlayCircleFill onClick={play} className="simulatorIcon" color="green" />
+                <BsFillStopCircleFill onClick={stop} className="simulatorIcon" color="red" />
                 <BsPlusCircle onClick={zoomIn} className="simulatorIcon" color="grey" />
                 <BsDashCircle onClick={zoomOut} className="simulatorIcon" color="grey" />
                 <BiTargetLock onClick={reCenter} className="simulatorIcon" color="grey" />
