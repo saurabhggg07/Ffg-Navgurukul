@@ -96,9 +96,9 @@ function moveWait() {
     );
 }
 
-export function stop() {
-    infinite = false;
-}
+// export function stop() {
+//     infinite = false;
+// }
 
 async function playFrame() {
     if (!playing || isLastFrame()) {
@@ -121,7 +121,7 @@ async function playFrame() {
 }
 
 export async function play() {
-    infinite = true;
+    infinite = !infinite;
     playing = !playing;
     if (playing && isLastFrame()) {
         frameNumber = 0;
