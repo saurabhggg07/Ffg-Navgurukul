@@ -86,8 +86,8 @@ export const generateInputFrame = (
                 true,
             );
             arduinoStates.push(...ifStates);
-            const newPreviousState1 = ifStates[ifStates.length - 1];
-            previousState = _.cloneDeep(newPreviousState1);
+            // const newPreviousState1 = ifStates[ifStates.length - 1];
+            // previousState = _.cloneDeep(newPreviousState1);
             const elseStates = generateFrame(
                 blocks,
                 nextBlock,
@@ -114,6 +114,7 @@ export const generateInputFrame = (
                     state.shouldDisplay = shouldDisplay
                 }
             })
+            console.log('states =', states)
             arduinoStates.push(...states);
             const newPreviousState = states[states.length - 1];
             previousState = _.cloneDeep(newPreviousState);

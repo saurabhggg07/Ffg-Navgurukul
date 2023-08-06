@@ -17,6 +17,7 @@ import { play , stop }from "../player/playerComponent";
 import startBlockly from "../core/blockly/startBlockly";
 import {BsFillPlayCircleFill, BsPlusCircle, BsDashCircle, BsFillStopCircleFill} from "react-icons/bs";
 import { BiTargetLock } from "react-icons/bi";
+import _ from "lodash";
 
 Blockly.setLocale(En);
 function SimulatorComponent(){
@@ -97,22 +98,35 @@ function SimulatorComponent(){
                         isPushButtonPressed.current = false
                     }
                 })
-                currentFrame = frame;
-                if(currentFrame.shouldDisplay === 1){
+                currentFrame = _.cloneDeep(frame);
+                if(currentFrame.shouldDisplay ===1){
                     update(draw, currentFrame);
-                }
-                else if(currentFrame.shouldDisplay === 0){
-                    if(isPushButtonPressed.current===false){
-                        update(draw, currentFrame);
+                }else{
+                    if(isPushButtonPressed.current){
+                        if(currentFrame.shouldDisplay===0) return
+                        else update(draw, currentFrame);
+                    }else{
+                        if(currentFrame.shouldDisplay===-1) return
+                        else update(draw, currentFrame);
                     }
                 }
-                else{
-                    if(isPushButtonPressed.current===true){
-                        update(draw, currentFrame);
-                    }
-                }
-                // document.getElementById("container").innerHTML = draw.svg()
-                if(container && container.current) container.current.innerHTML = draw.svg()
+
+                // else if(currentFrame.shouldDisplay===0){
+                //     if(isPushButtonPressed.current){
+                //         return
+                //     }else{
+                //         update(draw, currentFrame);
+                //     }
+                // }else if(currentFrame.shouldDisplay===-1){
+                //     if(!isPushButtonPressed.current){
+                //        return
+                //     }
+                //     else{
+                //         update(draw, currentFrame);
+                //     }
+                // }
+                document.getElementById("container").innerHTML = draw.svg()
+
 
 
             })

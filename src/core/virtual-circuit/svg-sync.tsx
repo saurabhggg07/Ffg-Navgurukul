@@ -55,19 +55,19 @@ export const syncComponents = (frame: ArduinoFrame, draw: Svg) => {
         );
 
     //Reset all components elements that don't have state in the frame
-    const componentIds = frame.components
-        .filter((c) => c.type !== ArduinoComponentType.TIME)
-        .map((c) => arduinoComponentStateToId(c));
-
-    draw
-        .find(".component")
-        .filter((componentEl) => !componentIds.includes(componentEl.id()))
-        .filter((componentEl) => _.isFunction(resetComponent[componentEl.data("component-type")]))
-        .map((componentEl) => [
-            componentEl,
-            resetComponent[componentEl.data("component-type")],
-        ])
-        .forEach(([componentEl, func]: [Element, ResetComponent]) =>
-            func(componentEl)
-        );
+    // const componentIds = frame.components
+    //     .filter((c) => c.type !== ArduinoComponentType.TIME)
+    //     .map((c) => arduinoComponentStateToId(c));
+    //
+    // draw
+    //     .find(".component")
+    //     .filter((componentEl) => !componentIds.includes(componentEl.id()))
+    //     .filter((componentEl) => _.isFunction(resetComponent[componentEl.data("component-type")]))
+    //     .map((componentEl) => [
+    //         componentEl,
+    //         resetComponent[componentEl.data("component-type")],
+    //     ])
+    //     .forEach(([componentEl, func]: [Element, ResetComponent]) =>
+    //         func(componentEl)
+    //     );
 };
