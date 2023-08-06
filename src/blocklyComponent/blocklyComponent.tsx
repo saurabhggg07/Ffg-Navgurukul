@@ -19,6 +19,9 @@ import {draw} from "svelte/transition";
 import { useHistory } from "react-router-dom";
 import {googleLogout} from "@react-oauth/google";
 import userAction from "../redux/actions/user";
+import Header from "../components/header/header";
+import NavBar from "../components/slider/navBar";
+import {FiLogOut} from "react-icons/fi";
 Blockly.setLocale(En);
 function resizeBlockly() {
     Blockly.svgResize(Blockly.getMainWorkspace() as WorkspaceSvg);
@@ -56,9 +59,6 @@ const BlocklyComponents = () => {
     },[loadEl])
 
     const history = useHistory();
-    const navigateToVirtualCircuit = () => {
-        history.push("/virtual-circuit")
-    }
 
     const logoutUser = () =>{
         googleLogout();
@@ -69,11 +69,18 @@ const BlocklyComponents = () => {
 
     return(
         <React.Fragment>
-            <div ref={blocklyElement}  id="blocklyElement" className="blocklyContainer"></div>
-            <div className="injectionDiv geras-renderer classic-theme virtualCircuitButton" style={{ right: "1vw", top: "1vh", position: "absolute"}}>
-                <button onClick={navigateToVirtualCircuit} className="virtualCircuitButton">Hit Me!</button>
+            <div className="root">
+                <Header />
+                <div className="logout" title="LogOut">
+                <FiLogOut onClick={logoutUser} />
+                </div>
+                <div className="workspace">
+                    <div ref={blocklyElement} id="blocklyElement" className="blocklyContainer" />
+                    <div id="blocklyDiv">
+                        <NavBar />
+                    </div>
+                </div>
             </div>
-            <button onClick={logoutUser} className="logoutButton">Logout</button>
         </React.Fragment>)
 }
 

@@ -1,6 +1,6 @@
 import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
-export default `<category name="Logic" colour="${COLOR_THEME.CONTROL}">
+export default `<category name="Logic" colour="${COLOR_THEME.BLUE}">
     <block type="control_if">
         <comment pinned="false" h="150" w="460">"If blocks" will run the code in the Then section if what is inside the If what is attached to IF Section equals true.  If you connected the is_button_pressed block to the IF Section and the button is pressed, then the then section’s code will run.</comment>
     </block>
@@ -24,4 +24,4 @@ If the operator is "or", it will check if one of the values are true.</comment>
     </block>
     <block type="logic_boolean"></block>
 </category>
-`;
+`+`<sep></sep>`;

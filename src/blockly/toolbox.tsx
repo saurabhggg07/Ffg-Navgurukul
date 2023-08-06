@@ -60,7 +60,7 @@ const defaultToolbox: ToolBoxEntries[] = [
         ],
     },
     {
-        color: COLOR_THEME.COMPONENTS,
+        color: COLOR_THEME.DARK_ORANGE,
         category: ToolBoxCategory.COMPONENT,
         name: 'Add-ons',
         toolBoxEntries: [

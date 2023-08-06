@@ -29,9 +29,10 @@ export const findArduinoLoopBlock = (blocks: BlockData[]) => {
 };
 
 export const getLoopTimeFromBlockData = (blocks: BlockData[]): number => {
-    return +findArduinoLoopBlock(blocks).fieldValues.find(
-        (field) => field.name === 'LOOP_TIMES'
-    ).value;
+    return 1;
+    // return +findArduinoLoopBlock(blocks).fieldValues.find(
+    //     (field) => field.name === 'LOOP_TIMES'
+    // ).value;
 };
 
 export const findRootBlock = (block: BlockData, blocks: BlockData[]) => {

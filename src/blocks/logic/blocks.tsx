@@ -1,5 +1,4 @@
 import Blockly from "blockly/core";
-import { COLOR_THEME } from "../../core/blockly/constants/colors";
 
 Blockly.defineBlocksWithJsonArray([
     // If/else block that does not use a mutator.
@@ -22,7 +21,7 @@ Blockly.defineBlocksWithJsonArray([
         ],
         previousStatement: null,
         nextStatement: null,
-        colour: COLOR_THEME.CONTROL,
+        style: "logic_blocks",
         tooltip: "%{BKYCONTROLS_IF_TOOLTIP_2}",
         helpUrl: "%{BKY_CONTROLS_IF_HELPURL}",
         extensions: ["controls_if_tooltip"],
@@ -53,7 +52,7 @@ Blockly.defineBlocksWithJsonArray([
         ],
         previousStatement: null,
         nextStatement: null,
-        colour: COLOR_THEME.CONTROL,
+        style: "logic_blocks",
         tooltip: "%{BKYCONTROLS_IF_TOOLTIP_2}",
         helpUrl: "%{BKY_CONTROLS_IF_HELPURL}",
         extensions: ["controls_if_tooltip"],

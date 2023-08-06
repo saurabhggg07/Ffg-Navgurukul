@@ -12,6 +12,7 @@ let frameNumber = 1;
 let playing = false;
 let speedDivisor = 1;
 let maxTimePerStep = 1000;
+let infinite = false;
 
 const unsubscribes = [];
 function setCurrentFrame(frameNumber) {
@@ -86,7 +87,7 @@ function navigateToClosestTimeline(timeLine) {
 }
 
 function isLastFrame() {
-    return frameNumber >= frames.length - 1;
+    return frameNumber > frames.length - 1;
 }
 
 function moveWait() {
@@ -95,25 +96,32 @@ function moveWait() {
     );
 }
 
+export function stop() {
+    infinite = false;
+}
+
 async function playFrame() {
     if (!playing || isLastFrame()) {
         return;
     }
 
-    if (frames[frameNumber].delay > 0) {
-        await wait(frames[frameNumber].delay);
-    }
-
-    currentFrameStore.set(frames[frameNumber]);
-    frameNumber += 1;
-    await moveWait();
-    await playFrame();
-    if (isLastFrame()) {
-        playing = false;
-    }
+    do{
+        if (frames[frameNumber].delay > 0) {
+            await wait(frames[frameNumber].delay);
+        }
+    
+        currentFrameStore.set(frames[frameNumber]);
+        frameNumber += 1;
+        await moveWait();
+        await playFrame();
+        if (isLastFrame()) {
+            frameNumber = 0;
+        }
+    }while(infinite);
 }
 
 export async function play() {
+    infinite = true;
     playing = !playing;
     if (playing && isLastFrame()) {
         frameNumber = 0;

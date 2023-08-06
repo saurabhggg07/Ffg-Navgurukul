@@ -4,39 +4,39 @@ import type { BlocklyThemeOptions } from 'blockly';
 export const theme: BlocklyThemeOptions = {
     blockStyles: {
         logic_blocks: {
-            colourPrimary: COLOR_THEME.CONTROL,
-            colourSecondary: COLOR_THEME.CONTROL,
-            colourTertiary: COLOR_THEME.CONTROL,
+            colourPrimary: COLOR_THEME.BLUE,
+            colourSecondary: COLOR_THEME.BLUE,
+            colourTertiary: COLOR_THEME.BLUE,
             hat: '',
         },
         loop_blocks: {
-            colourPrimary: COLOR_THEME.CONTROL,
-            colourSecondary: COLOR_THEME.CONTROL,
-            colourTertiary: COLOR_THEME.CONTROL,
+            colourPrimary: COLOR_THEME.PURPLE,
+            colourSecondary: COLOR_THEME.PURPLE,
+            colourTertiary: COLOR_THEME.PURPLE,
             hat: '',
         },
-        procedure_blocks: {
-            colourPrimary: COLOR_THEME.CONTROL,
-            colourSecondary: COLOR_THEME.CONTROL,
-            colourTertiary: COLOR_THEME.CONTROL,
+        time_blocks: {
+            colourPrimary: COLOR_THEME.GREEN,
+            colourSecondary: COLOR_THEME.GREEN,
+            colourTertiary: COLOR_THEME.GREEN,
             hat: '',
         },
         math_blocks: {
-            colourPrimary: COLOR_THEME.VALUES,
-            colourSecondary: COLOR_THEME.VALUES,
-            colourTertiary: COLOR_THEME.VALUES,
+            colourPrimary: COLOR_THEME.YELLOW,
+            colourSecondary: COLOR_THEME.YELLOW,
+            colourTertiary: COLOR_THEME.YELLOW,
             hat: '',
         },
         text_blocks: {
-            colourPrimary: COLOR_THEME.VALUES,
-            colourSecondary: COLOR_THEME.VALUES,
-            colourTertiary: COLOR_THEME.VALUES,
+            colourPrimary: COLOR_THEME.ORANGE,
+            colourSecondary: COLOR_THEME.ORANGE,
+            colourTertiary: COLOR_THEME.ORANGE,
             hat: '',
         },
         colour_blocks: {
-            colourPrimary: COLOR_THEME.VALUES,
-            colourSecondary: COLOR_THEME.VALUES,
-            colourTertiary: COLOR_THEME.VALUES,
+            colourPrimary: COLOR_THEME.PINK,
+            colourSecondary: COLOR_THEME.PINK,
+            colourTertiary: COLOR_THEME.PINK,
             hat: '',
         },
         variable_blocks: {

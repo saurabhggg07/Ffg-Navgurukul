@@ -13,8 +13,10 @@ import '@svgdotjs/svg.panzoom.js'
 import currentFrameStore from "../stores/currentFrame.store";
 import {wait} from "@testing-library/user-event/dist/utils";
 import { useHistory } from "react-router-dom";
-import { play }from "../player/playerComponent";
+import { play , stop }from "../player/playerComponent";
 import startBlockly from "../core/blockly/startBlockly";
+import {BsFillPlayCircleFill, BsPlusCircle, BsDashCircle, BsFillStopCircleFill} from "react-icons/bs";
+import { BiTargetLock } from "react-icons/bi";
 
 Blockly.setLocale(En);
 function SimulatorComponent(){
@@ -118,18 +120,35 @@ function SimulatorComponent(){
 
     },[])
 
-    const history = useHistory();
+    function zoomIn() {
+        draw = draw.zoom(draw.zoom() + 0.05);
+        if (container && container.current) container.current.innerHTML = draw.svg()
+    }
 
-    const home = () => {
-        history.push("/blockly-home")
+    function zoomOut() {
+        draw.zoom(draw.zoom() - 0.05);
+        if (container && container.current) container.current.innerHTML = draw.svg()
+    }
+
+    function reCenter() {
+        if (draw) {
+            centerCircuit(
+                draw,
+                frames.length > 0 ? frames[frames.length - 1] : undefined
+            );
+        }
+        if (container && container.current) container.current.innerHTML = draw.svg()
     }
 
     return(
         <React.Fragment>
-            <div ref={container} id="container" className="simulatorContainer" />
-            <div className="simulatorButton" style={{ right: "1vw", top: "1vh", position: "fixed" }}>
-                <button onClick={play} className="simulatorButton">Hit Me!</button>
-                <button onClick={home} className="simulatorButton">Back to Home</button>
+            <div ref={container} id="container" className="simulator" />
+            <div className="simulatorIcons">
+                <BsFillPlayCircleFill onClick={play} className="simulatorIcon" color="green" />
+                <BsFillStopCircleFill onClick={stop} className="simulatorIcon" color="red" />
+                <BsPlusCircle onClick={zoomIn} className="simulatorIcon" color="grey" />
+                <BsDashCircle onClick={zoomOut} className="simulatorIcon" color="grey" />
+                <BiTargetLock onClick={reCenter} className="simulatorIcon" color="grey" />
             </div>
         </React.Fragment>
     )
