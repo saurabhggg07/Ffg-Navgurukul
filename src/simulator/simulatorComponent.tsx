@@ -24,6 +24,7 @@ function SimulatorComponent(){
     let unsubscribes = [];
     let currentFrame = undefined;
     let frames = [];
+    let isPushButtonPressed = useRef(false)
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(()=>{
@@ -78,8 +79,36 @@ function SimulatorComponent(){
 
         unsubscribes.push(
             currentFrameStore.subscribe((frame) => {
+                window.addEventListener('mousedown',(e)=>{
+                    if((e.target as HTMLElement).id === 'COLOR_BTN_NOT_PRESSED' || (e.target as HTMLElement).id === 'BUTTON_NOT_PRESSED'){
+                        draw.findOne("#BUTTON_PRESSED_TEXT").show();
+                        draw.findOne("#BUTTON_TEXT").hide();
+                        draw.findOne("#BUTTON_PRESSED").show();
+                        draw.findOne("#BUTTON_NOT_PRESSED").hide();
+                        isPushButtonPressed.current = true
+                    }
+                    if((e.target as HTMLElement).id === 'COLOR_BTN_PRESSED' || (e.target as HTMLElement).id === 'BUTTON_PRESSED'){
+                        draw.findOne("#BUTTON_PRESSED_TEXT").hide();
+                        draw.findOne("#BUTTON_TEXT").show();
+                        draw.findOne("#BUTTON_PRESSED").hide();
+                        draw.findOne("#BUTTON_NOT_PRESSED").show();
+                        isPushButtonPressed.current = false
+                    }
+                })
                 currentFrame = frame;
-                update(draw, currentFrame);
+                if(currentFrame.shouldDisplay === 1){
+                    update(draw, currentFrame);
+                }
+                else if(currentFrame.shouldDisplay === 0){
+                    if(isPushButtonPressed.current===false){
+                        update(draw, currentFrame);
+                    }
+                }
+                else{
+                    if(isPushButtonPressed.current===true){
+                        update(draw, currentFrame);
+                    }
+                }
                 // document.getElementById("container").innerHTML = draw.svg()
                 if(container && container.current) container.current.innerHTML = draw.svg()
 

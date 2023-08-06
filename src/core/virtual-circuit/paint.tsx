@@ -42,10 +42,10 @@ export default (draw: Svg, frameContainer: ArduinoFrameContainer)=> {
             createNewComponent(state, draw, arduino, board,frameContainer.settings);
         });
     }
-    draw.findOne("#BUTTON_PRESSED_TEXT").hide();
-    draw.findOne("#BUTTON_TEXT").show();
-    draw.findOne("#BUTTON_PRESSED").hide();
-    draw.findOne("#BUTTON_NOT_PRESSED").show();
+    draw.findOne("#BUTTON_PRESSED_TEXT") && draw.findOne("#BUTTON_PRESSED_TEXT").hide();
+    draw.findOne("#BUTTON_TEXT") && draw.findOne("#BUTTON_TEXT").show();
+    draw.findOne("#BUTTON_PRESSED") && draw.findOne("#BUTTON_PRESSED").hide();
+    draw.findOne("#BUTTON_NOT_PRESSED") && draw.findOne("#BUTTON_NOT_PRESSED").show();
 
 };
 
