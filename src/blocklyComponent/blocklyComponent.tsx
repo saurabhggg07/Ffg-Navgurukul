@@ -21,7 +21,7 @@ import {googleLogout} from "@react-oauth/google";
 import userAction from "../redux/actions/user";
 import Header from "../components/header/header";
 import NavBar from "../components/slider/navBar";
-import {FiLogOut} from "react-icons/fi";
+import {BiArrowBack} from "react-icons/bi";
 Blockly.setLocale(En);
 function resizeBlockly() {
     Blockly.svgResize(Blockly.getMainWorkspace() as WorkspaceSvg);
@@ -71,8 +71,8 @@ const BlocklyComponents = () => {
         <React.Fragment>
             <div className="root">
                 <Header />
-                <div className="logout" title="LogOut">
-                <FiLogOut onClick={logoutUser} />
+                <div className="backButton" title="Back Button">
+                <BiArrowBack onClick={logoutUser} />
                 </div>
                 <div className="workspace">
                     <div ref={blocklyElement} id="blocklyElement" className="blocklyContainer" />

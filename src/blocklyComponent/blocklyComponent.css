@@ -4,9 +4,9 @@
     width: 100vw;
 }
 
-.logout {
+.backButton {
     position: absolute;
-    right: 2vw;
+    left: 1vw;
     top: 1.5vh;
 }
 
