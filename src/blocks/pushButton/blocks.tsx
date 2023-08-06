@@ -29,14 +29,6 @@ const buttonSetupBlock: any = {
       "-------------------------------------"
     );
     this.appendDummyInput()
-      .appendField("Loop ")
-      .appendField(
-        new Blockly.FieldDropdown(() => {
-          return loopTimes();
-        }),
-        "LOOP"
-      );
-    this.appendDummyInput()
       .appendField("Is button pressed: ")
       .appendField(new Blockly.FieldCheckbox("TRUE"), "is_pressed");
     this.setColour(COLOR_THEME.SENSOR);
