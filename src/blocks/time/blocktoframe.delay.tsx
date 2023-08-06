@@ -8,7 +8,8 @@ export const delayBlock: BlockToFrameTransformer = (
     block,
     variables,
     timeline,
-    previousState
+    previousState,
+    ternaryValue
 ) => {
     const seconds = +getInputValue(
         blocks,
@@ -45,6 +46,7 @@ export const delayBlock: BlockToFrameTransformer = (
             delay,
             powerLedOn: true,
             frameNumber: previousState ? previousState.frameNumber + 1 : 1,
+            shouldDisplay: 1
         },
     ];
 };

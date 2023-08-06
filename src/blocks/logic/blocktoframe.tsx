@@ -7,19 +7,20 @@ export const ifElse: BlockToFrameTransformer = (
     block,
     variables,
     timeline,
-    previousState
+    previousState,
+    ternaryValue
 ) => {
-    const excuteBlocksInsideIf = getInputValue(
-        blocks,
-        block,
-        variables,
-        timeline,
-        "IF0",
-        false,
-        previousState
-    );
+    // const excuteBlocksInsideIf = getInputValue(
+    //     blocks,
+    //     block,
+    //     variables,
+    //     timeline,
+    //     "IF0",
+    //     false,
+    //     previousState
+    // );
 
-    if (excuteBlocksInsideIf) {
+    if (ternaryValue) {
         const explanation =
             'Executing blocks inside "DO" because what is connected is true.';
         const ifFrame = arduinoFrameByExplanation(
@@ -27,7 +28,7 @@ export const ifElse: BlockToFrameTransformer = (
             block.blockName,
             timeline,
             explanation,
-            previousState
+            previousState,
         );
         return [
             ifFrame,
@@ -37,7 +38,8 @@ export const ifElse: BlockToFrameTransformer = (
                 variables,
                 timeline,
                 "DO0",
-                previousState
+                -1,
+                previousState,
             ),
         ];
     }
@@ -50,7 +52,7 @@ export const ifElse: BlockToFrameTransformer = (
             block.blockName,
             timeline,
             explanation,
-            previousState
+            previousState,
         );
         return [
             ifFrame,
@@ -60,7 +62,10 @@ export const ifElse: BlockToFrameTransformer = (
                 variables,
                 timeline,
                 "ELSE",
-                previousState
+                0,
+                previousState,
+
+
             ),
         ];
     }
@@ -72,7 +77,7 @@ export const ifElse: BlockToFrameTransformer = (
             block.blockName,
             timeline,
             explanation,
-            previousState
+            previousState,
         ),
     ];
 };

@@ -8,7 +8,7 @@ import {ArduinoFrame} from "../frames/arduino.frames";
 import {Svg} from "@svgdotjs/svg.js";
 import {updateLed} from "../../blocks/led/virtual-circuit";
 
-export default (draw: Svg, frame = undefined) => {
+export default (draw: Svg, frame: ArduinoFrame = undefined) => {
     if (!frame) {
         return;
     }

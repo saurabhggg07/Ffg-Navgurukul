@@ -38,6 +38,7 @@ export interface ArduinoFrame {
     delay: number; // Number of milliseconds to delay
     powerLedOn: boolean;
     frameNumber: number;
+    shouldDisplay: number,
 }
 
 export interface Timeline {
@@ -101,3 +102,9 @@ export const SENSOR_COMPONENTS = [
     ArduinoComponentType.THERMISTOR,
     ArduinoComponentType.JOYSTICK,
 ];
+
+export interface Timeline {
+    iteration: number;
+
+    function: "setup" | "loop" | "pre-setup";
+}

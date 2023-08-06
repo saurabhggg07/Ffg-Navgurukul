@@ -1,5 +1,6 @@
 import {ArduinoComponentState, ArduinoComponentType} from "../frames/arduino.frames";
 import {getLedSvgString} from "../../blocks/led/svg-string";
+import {pushButtonString} from "../../blocks/pushButton/svg-string";
 
 
 export interface GetSvgString {
@@ -15,5 +16,6 @@ export const getSvgString = (state: ArduinoComponentState) => {
 
 const createSvgString: { [key: string]: GetSvgString } = {
     [ArduinoComponentType.LED]: getLedSvgString,
+    [ArduinoComponentType.BUTTON]: pushButtonString,
 
 };

@@ -13,6 +13,7 @@ const componentStateFuncs: { [key: string]: ComponentStateToId } = {
 
     [ArduinoComponentType.LED]: genericSingleComponentId,
     [ArduinoComponentType.TIME]: genericSingleComponentId,
+    [ArduinoComponentType.BUTTON]: genericSingleComponentId,
 };
 
 export const arduinoComponentStateToId = (

@@ -2,11 +2,23 @@ import * as _ from "lodash";
 import {timeSetupBlockToComponentState} from "../../../blocks/time/setupblocktocomponentstate";
 import {BlockData} from "../dto/block.type";
 import {ArduinoComponentState, Timeline} from "../../frames/arduino.frames";
-import {Sensor} from "../dto/sensor.type";
+import {ControlSensor, Sensor} from "../dto/sensor.type";
 import {timeSetupBlockToSensorData} from "../../../blocks/time/setupblocktosensordata";
+import {
+    buttonControlBlockToSensorData,
+    buttonSetupBlockToSensorData
+} from "../../../blocks/pushButton/setupblocktosensordata";
+import {
+    buttonControlBlockToComponentState,
+    buttonSetupBlockToComponentState
+} from "../../../blocks/pushButton/setupblocktocomponentstate";
 
 interface RetrieveSensorData {
     (block: BlockData): Sensor;
+}
+
+interface RetrieveControlSensorData {
+    (block: BlockData): ControlSensor;
 }
 
 interface BlockToComponentState {
@@ -17,7 +29,8 @@ const blockToSensorComponent: {
     [blockName: string]: BlockToComponentState;
 } = {
     time_setup: timeSetupBlockToComponentState,
-
+    button_setup: buttonSetupBlockToComponentState,
+    button_control: buttonControlBlockToComponentState,
 };
 export const sensorSetupBlockName = _.keys(blockToSensorComponent);
 
@@ -43,6 +56,7 @@ export const convertToState = (
 
 const blockToSensorData: { [blockName: string]: RetrieveSensorData } = {
     time_setup: timeSetupBlockToSensorData,
+    button_setup: buttonSetupBlockToSensorData,
 };
 
 export const convertToSensorData = (block: BlockData): Sensor => {
@@ -51,4 +65,16 @@ export const convertToSensorData = (block: BlockData): Sensor => {
     }
 
     return blockToSensorData[block.blockName](block);
+};
+
+const blockToControlSensorData: { [blockName: string]: RetrieveControlSensorData } = {
+    button_control: buttonControlBlockToSensorData,
+};
+
+export const convertToControlSensorData = (block: BlockData): ControlSensor => {
+    if (!_.isFunction(blockToControlSensorData[block.blockName])) {
+        throw new Error("No Control Sensor Data function found for " + block.blockName);
+    }
+
+    return blockToControlSensorData[block.blockName](block);
 };

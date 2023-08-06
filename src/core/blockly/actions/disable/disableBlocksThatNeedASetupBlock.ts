@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import type { BlockEvent } from "../../dto/event.type";
 import {
-  BlockData,
+  BlockData, blocksThatRequireControlSetup,
   blocksThatRequireSetup,
   multipleTopBlocks,
   setupBlockTypeToHumanName,
@@ -19,7 +19,7 @@ export const disableBlocksThatNeedASetupBlock = (
   const { blocks } = event;
 
   return blocks
-    .filter((b) => _.keys(blocksThatRequireSetup).includes(b.blockName))
+    .filter((b) => _.keys(blocksThatRequireSetup).includes(b.blockName) || _.keys(blocksThatRequireControlSetup).includes(b.blockName) )
     .filter((block) => shouldDisableBlock(block, blocks))
     .map((b) => {
       return {
@@ -35,17 +35,21 @@ export const disableBlocksThatNeedASetupBlock = (
 
 const shouldDisableBlock = (block: BlockData, blocks: BlockData[]): boolean => {
   const nameOfSetupBlock = blocksThatRequireSetup[block.blockName];
-
+  const nameOfControlSetupBlock = blocksThatRequireControlSetup[block.blockName];
   const numberOfSetupBlocks = blocks.filter(
     (b) => b.blockName === nameOfSetupBlock && !b.disabled
   ).length;
 
-  if (numberOfSetupBlocks == 1) {
+  const numberOfControlSetupBlock = blocks.filter(
+      (b) => b.blockName === nameOfControlSetupBlock && !b.disabled
+  ).length;
+
+  if (numberOfSetupBlocks == 1 || numberOfControlSetupBlock ==1) {
     return false;
   }
 
   // If no setup blocks are found we need disable the block
-  if (numberOfSetupBlocks < 1) {
+  if (numberOfSetupBlocks < 1 && numberOfControlSetupBlock < 1) {
     return true;
   }
 

@@ -15,3 +15,7 @@ export const arduinoLoopBlockShowLoopForeverText = () => {
     block.inputList[1].setVisible(false);
     block.render();
 };
+
+export const getTimesThroughLoop = (): number => {
+    return +getBlockByType('arduino_loop').getFieldValue('LOOP_TIMES');
+};

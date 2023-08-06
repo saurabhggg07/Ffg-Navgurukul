@@ -1,9 +1,10 @@
 import {BlockData} from "../../blockly/dto/block.type";
 import {findBlockById} from "../../blockly/helpers/block-data.helpers";
-import {ArduinoComponentState, ArduinoFrame, Color, Timeline, Variable} from "../arduino.frames";
+import {ArduinoComponentState, ArduinoComponentType, ArduinoFrame, Color, Timeline, Variable} from "../arduino.frames";
 import {arduinoComponentStateToId} from "../arduino-component-id";
 import * as _ from "lodash";
 import {VariableTypes} from "../../blockly/dto/variable.type";
+import {ARDUINO_PINS} from "../../microcontroller/selectBoard";
 
 export const findBlockInput = (
     blocks: BlockData[],
@@ -27,7 +28,8 @@ export const arduinoFrameByComponent = (
     previousFrame: ArduinoFrame = undefined,
     txLedOn = false,
     builtInLedOn = false,
-    delay = 0
+    delay = 0,
+    shouldDisplay= 1,
 ): ArduinoFrame => {
     const variables = previousFrame ? { ...previousFrame.variables } : {};
     const previousComponents = previousFrame ? [...previousFrame.components] : [];
@@ -53,6 +55,7 @@ export const arduinoFrameByComponent = (
         delay,
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
+        shouldDisplay
     };
 };
 
@@ -64,7 +67,8 @@ export const arduinoFrameByExplanation = (
     previousFrame: ArduinoFrame = undefined,
     txLedOn = false,
     builtInLedOn = false,
-    delay = 0
+    delay = 0,
+    shouldDisplay = 1
 ): ArduinoFrame => {
     const components = previousFrame ? _.cloneDeep(previousFrame.components) : [];
 
@@ -83,6 +87,7 @@ export const arduinoFrameByExplanation = (
         delay,
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
+        shouldDisplay
     };
 };
 
@@ -95,7 +100,8 @@ export const arduinoFrameByVariable = (
     previousFrame: ArduinoFrame = undefined,
     txLedOn = false,
     builtInLedOn = false,
-    delay = 0
+    delay = 0,
+    shouldDisplay = 1
 ): ArduinoFrame => {
     const variables = previousFrame ? _.cloneDeep(previousFrame.variables) : {};
     variables[newVariable.name] = newVariable;
@@ -114,6 +120,7 @@ export const arduinoFrameByVariable = (
         delay,
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
+        shouldDisplay
     };
 };
 
@@ -148,4 +155,18 @@ export const valueToString = (
     }
 
     return value;
+};
+
+export const findComponent = <T extends ArduinoComponentState>(
+    state: ArduinoFrame,
+    type: ArduinoComponentType,
+    pin: ARDUINO_PINS = undefined
+) => {
+    if (pin !== undefined) {
+        return state.components.find(
+            (c) => c.type === type && c.pins.includes(pin)
+        ) as T;
+    }
+
+    return state.components.find((c) => c.type === type) as T;
 };

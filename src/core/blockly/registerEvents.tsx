@@ -84,7 +84,6 @@ export const createFrames = async (blocklyEvent) => {
     }
 
     const microControllerType = getBoardType() as MicroControllerType;
-    console.log('cc = ', getAllBlocks())
     const event = transformEvent(
         getAllBlocks(),
         getAllVariables(),
@@ -157,6 +156,7 @@ export const createFrames = async (blocklyEvent) => {
 
     thirdActionPass.forEach((a) => updater(a));
 
+
     // We need this because we save the sensor setup data to the
     // block.
     const refreshEvent = transformEvent(
@@ -167,7 +167,8 @@ export const createFrames = async (blocklyEvent) => {
     );
 
     const newFrameContainer = eventToFrameFactory(refreshEvent,settings);
-    console.log('Frame: ',newFrameContainer)
+
+    console.log('nff = ', newFrameContainer)
     if (
         currentFrameContainter === undefined ||
         JSON.stringify(newFrameContainer) !== JSON.stringify(currentFrameContainter)

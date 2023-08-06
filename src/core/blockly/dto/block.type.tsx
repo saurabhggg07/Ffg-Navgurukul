@@ -28,6 +28,7 @@ export enum PinCategory {
 export enum BlockType {
     SETUP = "SETUP",
     SENSOR_SETUP = "SENSOR_SETUP",
+    SENSOR_CONTROL = "SENSOR_CONTROL",
     SENSOR_READ = "SENSOR_READ",
     STATE = "STATE",
     VALUE = "VALUE",
@@ -334,6 +335,10 @@ export const blocksToBlockTypes: {
         type: BlockType.SENSOR_SETUP,
         pinCategory: PinCategory.BUTTON,
     },
+    button_control: {
+        type: BlockType.SENSOR_CONTROL,
+        pinCategory: PinCategory.BUTTON,
+    },
     is_button_pressed: {
         type: BlockType.SENSOR_READ,
         pinCategory: PinCategory.NONE,
@@ -472,6 +477,9 @@ export const blocksThatRequireSetup = {
     joystick_engaged: "joystick_setup",
 };
 
+export const blocksThatRequireControlSetup = {
+    is_button_pressed: "button_control",
+};
 export const BlockTypeRequireRootBlock = [
     BlockType.STATE,
     BlockType.VALUE,
@@ -488,7 +496,8 @@ export const setupBlockTypeToHumanName = {
     temp_setup: "temperature sensor setup block",
     rgb_led_setup: "LED color setup block",
     rfid_setup: "RFID setup block",
-    button_setup: "button setup block",
+    button_setup: "button control/setup block",
+    button_control: "button control/setup block",
     message_setup: "message setup block",
     digital_read_setup: "digital read setup block",
     analog_read_setup: "analog read setup block",

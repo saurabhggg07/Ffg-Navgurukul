@@ -17,6 +17,7 @@ import { play , stop }from "../player/playerComponent";
 import startBlockly from "../core/blockly/startBlockly";
 import {BsFillPlayCircleFill, BsPlusCircle, BsDashCircle, BsFillStopCircleFill} from "react-icons/bs";
 import { BiTargetLock } from "react-icons/bi";
+import _ from "lodash";
 
 Blockly.setLocale(En);
 function SimulatorComponent(){
@@ -26,6 +27,7 @@ function SimulatorComponent(){
     let unsubscribes = [];
     let currentFrame = undefined;
     let frames = [];
+    let isPushButtonPressed = useRef(false)
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(()=>{
@@ -80,10 +82,51 @@ function SimulatorComponent(){
 
         unsubscribes.push(
             currentFrameStore.subscribe((frame) => {
-                currentFrame = frame;
-                update(draw, currentFrame);
-                // document.getElementById("container").innerHTML = draw.svg()
-                if(container && container.current) container.current.innerHTML = draw.svg()
+                window.addEventListener('mousedown',(e)=>{
+                    if((e.target as HTMLElement).id === 'COLOR_BTN_NOT_PRESSED' || (e.target as HTMLElement).id === 'BUTTON_NOT_PRESSED'){
+                        draw.findOne("#BUTTON_PRESSED_TEXT").show();
+                        draw.findOne("#BUTTON_TEXT").hide();
+                        draw.findOne("#BUTTON_PRESSED").show();
+                        draw.findOne("#BUTTON_NOT_PRESSED").hide();
+                        isPushButtonPressed.current = true
+                    }
+                    if((e.target as HTMLElement).id === 'COLOR_BTN_PRESSED' || (e.target as HTMLElement).id === 'BUTTON_PRESSED'){
+                        draw.findOne("#BUTTON_PRESSED_TEXT").hide();
+                        draw.findOne("#BUTTON_TEXT").show();
+                        draw.findOne("#BUTTON_PRESSED").hide();
+                        draw.findOne("#BUTTON_NOT_PRESSED").show();
+                        isPushButtonPressed.current = false
+                    }
+                })
+                currentFrame = _.cloneDeep(frame);
+                if(currentFrame.shouldDisplay ===1){
+                    update(draw, currentFrame);
+                }else{
+                    if(isPushButtonPressed.current){
+                        if(currentFrame.shouldDisplay===0) return
+                        else update(draw, currentFrame);
+                    }else{
+                        if(currentFrame.shouldDisplay===-1) return
+                        else update(draw, currentFrame);
+                    }
+                }
+
+                // else if(currentFrame.shouldDisplay===0){
+                //     if(isPushButtonPressed.current){
+                //         return
+                //     }else{
+                //         update(draw, currentFrame);
+                //     }
+                // }else if(currentFrame.shouldDisplay===-1){
+                //     if(!isPushButtonPressed.current){
+                //        return
+                //     }
+                //     else{
+                //         update(draw, currentFrame);
+                //     }
+                // }
+                document.getElementById("container").innerHTML = draw.svg()
+
 
 
             })

@@ -297,3 +297,37 @@ export const createWireFromArduinoToBreadBoard = (
     line.data("type", "wire");
     line.data("update-wire", false);
 };
+
+export const createComponentWire = (
+    hole: number,
+    isDown: boolean,
+    componentEl: Element,
+    pin: ARDUINO_PINS,
+    draw: Svg,
+    arduino: Element,
+    componentId: string,
+    connectionId: string,
+    board: MicroController
+) => {
+    const holeId = `pin${hole}${isDown ? "E" : "F"}`;
+    const breadboardHoleIdToBoard = `pin${hole}${isDown ? "A" : "J"}`;
+    const color = board.pinConnections[pin].color;
+    createWireComponentToBreadboard(
+        holeId,
+        componentEl,
+        draw,
+        arduino,
+        connectionId,
+        componentId,
+        color
+    );
+
+    createWireFromArduinoToBreadBoard(
+        pin,
+        arduino as Svg,
+        draw,
+        breadboardHoleIdToBoard,
+        componentId,
+        board
+    );
+};
