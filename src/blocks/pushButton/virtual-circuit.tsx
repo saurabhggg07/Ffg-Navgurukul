@@ -56,10 +56,10 @@ const toggleButton = (componentEl: Element, isOn: boolean) => {
     return;
   }
 
-  componentEl.findOne("#BUTTON_PRESSED_TEXT").hide();
-  componentEl.findOne("#BUTTON_TEXT").show();
-  componentEl.findOne("#BUTTON_PRESSED").hide();
-  componentEl.findOne("#BUTTON_NOT_PRESSED").show();
+  // componentEl.findOne("#BUTTON_PRESSED_TEXT").hide();
+  // componentEl.findOne("#BUTTON_TEXT").show();
+  // componentEl.findOne("#BUTTON_PRESSED").hide();
+  // componentEl.findOne("#BUTTON_NOT_PRESSED").show();
 };
 
 export const createWiresButton: CreateWire<ButtonState> = (

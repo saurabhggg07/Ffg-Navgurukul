@@ -40,6 +40,7 @@ export const simpleLoop: BlockToFrameTransformer = (
                 variables,
                 timeline,
                 "DO",
+                1,
                 loopFrame
             ),
         ];
@@ -98,7 +99,12 @@ export const forLoop: BlockToFrameTransformer = (
                 `Running loop ${counter + 1} out ${array.length} times; ${
                     newVariable.name
                 } = ${i}`,
-                prevState
+                prevState,
+                false,
+                false,
+                0,
+                1
+
             );
             const states = [
                 loopFrame,
@@ -108,6 +114,7 @@ export const forLoop: BlockToFrameTransformer = (
                     variables,
                     timeline,
                     "DO",
+                    1,
                     loopFrame
                 ),
             ];

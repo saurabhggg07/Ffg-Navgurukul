@@ -42,6 +42,11 @@ export default (draw: Svg, frameContainer: ArduinoFrameContainer)=> {
             createNewComponent(state, draw, arduino, board,frameContainer.settings);
         });
     }
+    draw.findOne("#BUTTON_PRESSED_TEXT").hide();
+    draw.findOne("#BUTTON_TEXT").show();
+    draw.findOne("#BUTTON_PRESSED").hide();
+    draw.findOne("#BUTTON_NOT_PRESSED").show();
+
 };
 
 const findOrCreateMicroController = (draw: Svg, board: MicroController) => {

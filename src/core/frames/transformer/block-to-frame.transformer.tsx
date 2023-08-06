@@ -16,7 +16,8 @@ export interface BlockToFrameTransformer {
         block: BlockData,
         variables: VariableData[],
         timeline: Timeline,
-        previousState?: ArduinoFrame
+        previousState?: ArduinoFrame,
+        ternaryValue?: boolean,
     ): ArduinoFrame[];
 }
 
@@ -25,7 +26,8 @@ export const generateFrame: BlockToFrameTransformer = (
     block,
     variables,
     timeline,
-    previousState
+    previousState,
+    ternaryValue,
 ) => {
     try {
         return blockToFrameTransformerList[block.blockName](
@@ -33,7 +35,8 @@ export const generateFrame: BlockToFrameTransformer = (
             block,
             variables,
             timeline,
-            previousState
+            previousState,
+            ternaryValue
         );
     } catch (e) {
         console.log(block.blockName, "block name");
@@ -61,6 +64,7 @@ export const generateInputFrame = (
     variables: VariableData[],
     timeline: Timeline,
     inputName: string,
+    shouldDisplay: number,
     previousState?: ArduinoFrame
 ): ArduinoFrame[] => {
     // Fixing memory sharing between objects
@@ -72,16 +76,49 @@ export const generateInputFrame = (
     const arduinoStates = [];
     let nextBlock = startingBlock;
     do {
-        const states = generateFrame(
-            blocks,
-            nextBlock,
-            variables,
-            timeline,
-            previousState
-        );
-        arduinoStates.push(...states);
-        const newPreviousState = states[states.length - 1];
-        previousState = _.cloneDeep(newPreviousState);
+        if(nextBlock.blockName==='controls_ifelse'){
+            const ifStates = generateFrame(
+                blocks,
+                nextBlock,
+                variables,
+                timeline,
+                previousState,
+                true,
+            );
+            arduinoStates.push(...ifStates);
+            const newPreviousState1 = ifStates[ifStates.length - 1];
+            previousState = _.cloneDeep(newPreviousState1);
+            const elseStates = generateFrame(
+                blocks,
+                nextBlock,
+                variables,
+                timeline,
+                previousState,
+                false,
+            );
+            arduinoStates.push(...elseStates);
+            const newPreviousState2 = elseStates[elseStates.length - 1];
+            previousState = _.cloneDeep(newPreviousState2);
+        }
+        else{
+            const states = generateFrame(
+                blocks,
+                nextBlock,
+                variables,
+                timeline,
+                previousState,
+                true,
+            );
+            states.forEach(state => {
+                if(inputName==='DO0' || inputName==='ELSE'){
+                    state.shouldDisplay = shouldDisplay
+                }
+            })
+            arduinoStates.push(...states);
+            const newPreviousState = states[states.length - 1];
+            previousState = _.cloneDeep(newPreviousState);
+        }
+
         nextBlock = findBlockById(blocks, nextBlock.nextBlockId);
     } while (nextBlock !== undefined);
 

@@ -65,6 +65,7 @@ export const eventToFrameFactory = (
             event.variables,
             { iteration: 0, function: "setup" },
             "setup",
+            1,
             getPreviousState(
                 blocks,
                 { iteration: 0, function: "pre-setup" },
@@ -94,6 +95,7 @@ export const eventToFrameFactory = (
                 event.variables,
                 timeLine,
                 "loop",
+                1,
                 getPreviousState(blocks, timeLine, _.cloneDeep(previousFrame)) // Deep clone to prevent object memory sharing
             );
 

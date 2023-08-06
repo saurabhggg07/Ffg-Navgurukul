@@ -59,7 +59,7 @@ export const buttonControl: BlockToFrameTransformer = (
         timeline,
         buttonState,
         `button ${pin} is being setup.`,
-        previousState
+        previousState,
     ),
   ];
 };

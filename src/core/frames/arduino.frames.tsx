@@ -38,6 +38,7 @@ export interface ArduinoFrame {
     delay: number; // Number of milliseconds to delay
     powerLedOn: boolean;
     frameNumber: number;
+    shouldDisplay: number,
 }
 
 export interface Timeline {

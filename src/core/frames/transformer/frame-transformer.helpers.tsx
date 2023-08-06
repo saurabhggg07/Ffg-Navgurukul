@@ -28,7 +28,8 @@ export const arduinoFrameByComponent = (
     previousFrame: ArduinoFrame = undefined,
     txLedOn = false,
     builtInLedOn = false,
-    delay = 0
+    delay = 0,
+    shouldDisplay= 1,
 ): ArduinoFrame => {
     const variables = previousFrame ? { ...previousFrame.variables } : {};
     const previousComponents = previousFrame ? [...previousFrame.components] : [];
@@ -54,6 +55,7 @@ export const arduinoFrameByComponent = (
         delay,
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
+        shouldDisplay
     };
 };
 
@@ -65,7 +67,8 @@ export const arduinoFrameByExplanation = (
     previousFrame: ArduinoFrame = undefined,
     txLedOn = false,
     builtInLedOn = false,
-    delay = 0
+    delay = 0,
+    shouldDisplay = 1
 ): ArduinoFrame => {
     const components = previousFrame ? _.cloneDeep(previousFrame.components) : [];
 
@@ -84,6 +87,7 @@ export const arduinoFrameByExplanation = (
         delay,
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
+        shouldDisplay
     };
 };
 
@@ -96,7 +100,8 @@ export const arduinoFrameByVariable = (
     previousFrame: ArduinoFrame = undefined,
     txLedOn = false,
     builtInLedOn = false,
-    delay = 0
+    delay = 0,
+    shouldDisplay = 1
 ): ArduinoFrame => {
     const variables = previousFrame ? _.cloneDeep(previousFrame.variables) : {};
     variables[newVariable.name] = newVariable;
@@ -115,6 +120,7 @@ export const arduinoFrameByVariable = (
         delay,
         powerLedOn: true,
         frameNumber: previousFrame ? previousFrame.frameNumber + 1 : 1,
+        shouldDisplay
     };
 };
 
