@@ -12,7 +12,7 @@ function NavBar() {
 
     return (
         <div className="slider">
-            <div className="slider_icon" onClick={switch_menu} >
+            <div className={showSlider ? "slider_icon_left" : "slider_icon_right"} onClick={switch_menu}>
                 <div className="icon_box" />
                 <div className="arrow">
                     {showSlider ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}

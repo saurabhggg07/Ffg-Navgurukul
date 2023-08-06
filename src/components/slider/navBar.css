@@ -1,4 +1,13 @@
-.slider_icon {
+.slider_icon_left {
+    position: absolute;
+    z-index: 99;
+    right: 70vw;
+    top: 5vh;
+    height: 10vh;
+    width: 2vw;
+}
+
+.slider_icon_right {
     position: absolute;
     z-index: 99;
     right: 0vw;
@@ -12,8 +21,6 @@
     position: absolute;
     height: 10vh;
     width: 2vw;
-    right: 0vw;
-    bottom: 0vh;
     box-shadow: -2.5px 0px 5px grey;
 }
 
