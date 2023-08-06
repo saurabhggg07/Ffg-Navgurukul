@@ -5,6 +5,7 @@
     top: 5vh;
     height: 10vh;
     width: 2vw;
+    animation: 0.1s linear 0s 1 alternate slide-in;
 }
 
 .slider_icon_right {
@@ -37,7 +38,17 @@
     width: 70vw;
     right: 0vw;
     bottom: 0vh;
+    animation: 0.1s linear 0s 1 alternate slide-in;
 }
+
+@keyframes slide-in {
+    from {
+      transform: translateX(70vw);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 
 .container_box {
     background: white;
