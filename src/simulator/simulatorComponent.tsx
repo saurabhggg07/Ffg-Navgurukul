@@ -13,7 +13,7 @@ import '@svgdotjs/svg.panzoom.js'
 import currentFrameStore from "../stores/currentFrame.store";
 import {wait} from "@testing-library/user-event/dist/utils";
 import { useHistory } from "react-router-dom";
-import { play }from "../player/playerComponent";
+import { play, stop }from "../player/playerComponent";
 import startBlockly from "../core/blockly/startBlockly";
 import {BsFillPlayCircleFill, BsPlusCircle, BsDashCircle, BsFillStopCircleFill} from "react-icons/bs";
 import { BiTargetLock } from "react-icons/bi";
@@ -155,10 +155,16 @@ function SimulatorComponent(){
     }
 
     const [showButton, setButton] = useState(false);
-
+    const [disabled, setDisabled] = useState(false);
     function switch_button() {
         setButton(!showButton);
-        play();
+        setDisabled(true);
+        if (showButton) {
+            stop();
+        }
+        else {
+            play();
+        }
     }
 
     return(
@@ -169,9 +175,9 @@ function SimulatorComponent(){
                     {showButton ? <BsFillStopCircleFill className="simulatorIcon" color="red" />
                         : <BsFillPlayCircleFill className="simulatorIcon" color="green" />}
                 </div>
-                <BsPlusCircle onClick={zoomIn} className="simulatorIcon" color="grey" />
-                <BsDashCircle onClick={zoomOut} className="simulatorIcon" color="grey" />
-                <BiTargetLock onClick={reCenter} className="simulatorIcon" color="grey" />
+                <BsPlusCircle onClick={disabled ? () => { } : zoomIn} className="simulatorIcon" color={disabled ? "grey" : "black"} />
+                <BsDashCircle onClick={disabled ? () => { } : zoomOut} className="simulatorIcon" color={disabled ? "grey" : "black"} />
+                <BiTargetLock onClick={disabled ? () => { } : reCenter} className="simulatorIcon" color={disabled ? "grey" : "black"} />
             </div>
         </React.Fragment>
     )
