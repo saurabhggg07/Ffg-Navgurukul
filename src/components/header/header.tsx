@@ -8,7 +8,7 @@ function Navbar() {
   const handleChange = val => {
     setChecked(val)
   }
-  
+
   return (
     <div>
       <div className="nav_bar" />
