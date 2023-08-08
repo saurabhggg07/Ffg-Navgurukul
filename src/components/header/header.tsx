@@ -9,7 +9,6 @@ function Navbar() {
     setChecked(val)
   }
   
-
   return (
     <div>
       <div className="nav_bar" />
