@@ -47,6 +47,10 @@ settingsStore.subscribe((newSettings) => {
         // only run if a workspace exists to generate code from
         if (getWorkspace()) {
             codeStore.set({ code: getArduinoCode(), boardType: settings.boardType });
+            codeStore.subscribe((value) => {
+                console.log("Generated code above is : " );
+                console.log(value.code);
+            })
         }
         return newFrameContainer;
     });
@@ -176,7 +180,10 @@ export const createFrames = async (blocklyEvent) => {
         currentFrameContainter = newFrameContainer;
         frameStore.set(currentFrameContainter);
     }
-    // codeStore.set({ code: getArduinoCode(), boardType: microControllerType });
+    codeStore.set({ code: getArduinoCode(), boardType: microControllerType });
+    codeStore.subscribe((value) => {
+        console.log("Generated code is : \n" + value.code);
+    })
 };
 
 export const addListener = (workspace: WorkspaceSvg) => {
