@@ -171,10 +171,8 @@ function SimulatorComponent(){
         <React.Fragment>
             <div ref={container} id="container" className="simulator" />
             <div className="simulatorIcons">
-                <div onClick={switch_button}>
-                    {showButton ? <BsFillStopCircleFill className="simulatorIcon" color="red" />
-                        : <BsFillPlayCircleFill className="simulatorIcon" color="green" />}
-                </div>
+                {showButton ? <BsFillStopCircleFill onClick={switch_button} className="simulatorIcon" color="red" />
+                    : <BsFillPlayCircleFill onClick={switch_button} className="simulatorIcon" color="green" />}
                 <BsPlusCircle onClick={disabled ? () => { } : zoomIn} className="simulatorIcon" color={disabled ? "grey" : "black"} />
                 <BsDashCircle onClick={disabled ? () => { } : zoomOut} className="simulatorIcon" color={disabled ? "grey" : "black"} />
                 <BiTargetLock onClick={disabled ? () => { } : reCenter} className="simulatorIcon" color={disabled ? "grey" : "black"} />

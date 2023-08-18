@@ -1,25 +1,6 @@
-.root {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-}
-
-.backButton {
+#blocklyDiv {
+    height: calc(100% - 40px);
+    width: 100%;
     position: absolute;
-    left: 1vw;
-    top: 1.5vh;
-}
-
-.workspace {
-    position: absolute;
-    height: 95vh;
-    width: 100vw;
-    bottom: 0vh;
-}
-
-.blocklyContainer {
-    width: 100vw;
-    height: 95vh;
-    position: absolute;
-    bottom: 0vh;
+    bottom: 0;
 }
