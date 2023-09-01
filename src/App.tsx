@@ -4,6 +4,7 @@ import './App.css';
 import BlocklyComponent from "./blocklyComponent/blocklyComponent";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccountLogin from "./login/accountLogin";
+import CodeBurn from "./codeBurning/CodeBurn";
 
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
           <Route exact path="/" component={AccountLogin}/>
         <Route exact path="/blockly-home"
           component={BlocklyComponent} />
+          <Route exact path="/code-burn"
+                 component={CodeBurn} />
       </Switch>
     </Router>
   );
