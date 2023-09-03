@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import SimulatorComponent from "../../simulator/simulatorComponent";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"
-import "./navBar.css"
+import "./slider.css"
+import { stop } from "../../player/playerComponent";
+import onClickOutside from "react-onclickoutside";
 
-function NavBar() {
+function Slider() {
     const [showSlider, setSlider] = useState(false);
 
     function switch_menu() {
         setSlider(!showSlider);
+        if (!showSlider) {
+            stop();
+        }
     }
+
+    Slider.clickOutside = () => setSlider(false);
 
     return (
         <div className="slider">
-            <div className="slider_icon" onClick={switch_menu} >
+            <div className={showSlider ? "slider_icon_left" : "slider_icon_right"} onClick={switch_menu}>
                 <div className="icon_box" />
                 <div className="arrow">
                     {showSlider ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
                 </div>
             </div>
+            {showSlider ? <div className="w3-overlay" style={{ cursor: "pointer" }} title="close slider" id="myOverlay blocklyDiv" /> : null}
             {
                 showSlider ?
                     <div className="slider_container">
@@ -26,7 +34,11 @@ function NavBar() {
                     </div> : null
             }
         </div>
-    )
-}
+    );
+};
 
-export default NavBar;
+Slider.clickOutside = null
+
+export default onClickOutside(Slider, {
+    handleClickOutside: () => Slider.clickOutside,
+})
