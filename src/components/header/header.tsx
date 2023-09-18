@@ -42,7 +42,7 @@ function Header() {
     let data
     console.log('code = ', arduinoCode)
     try{
-      const resp = await fetch('http://localhost:8080/get-code',{
+      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code',{
         method: "POST",
         body: JSON.stringify({
           code: arduinoCode
