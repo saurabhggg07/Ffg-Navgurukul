@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsToggleOff, BsToggleOn } from "react-icons/bs"
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch } from "react-redux";
@@ -6,12 +6,11 @@ import { useHistory } from "react-router-dom";
 import { googleLogout } from "@react-oauth/google";
 import userAction from "../../redux/actions/user";
 
-function Header() {
+function Header(props) {
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(false);
 
   function handleChange() {
-    setChecked(!checked)
+    props.func(!props.code);
   }
 
   const history = useHistory();
@@ -29,7 +28,7 @@ function Header() {
         <BiArrowBack onClick={logoutUser} />
       </div>
       <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleChange}>
-        {checked ? <BsToggleOn /> : <BsToggleOff />}
+        {props.code ? <BsToggleOn /> : <BsToggleOff />}
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Enable Code View </div>
       </div>
     </header>

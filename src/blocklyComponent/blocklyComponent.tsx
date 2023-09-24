@@ -28,6 +28,7 @@ const BlocklyComponents = () => {
     const unsubscribes = [];
     let workspaceInitialize = false;
     const [loadEl,setLoadEl] = useState(0);
+    const [code, setCode] = useState(false)
 
     useEffect(()=>{
         window.Blockly = Blockly;
@@ -53,11 +54,15 @@ const BlocklyComponents = () => {
         );
     },[loadEl])
 
+    const isCode = (data) => {
+        setCode(data);
+      }
+
     return (
         <React.Fragment>
-            <Header />           
+            <Header func={isCode} code={code}/>           
             <div ref={blocklyElement} id="blocklyDiv" />  
-            <Slider />
+            <Slider func={isCode} code={code}/>
         </React.Fragment>)
 }
 
