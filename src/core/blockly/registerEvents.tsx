@@ -172,7 +172,6 @@ export const createFrames = async (blocklyEvent) => {
 
     const newFrameContainer = eventToFrameFactory(refreshEvent,settings);
 
-    console.log('nff = ', newFrameContainer)
     if (
         currentFrameContainter === undefined ||
         JSON.stringify(newFrameContainer) !== JSON.stringify(currentFrameContainter)
@@ -181,9 +180,7 @@ export const createFrames = async (blocklyEvent) => {
         frameStore.set(currentFrameContainter);
     }
     codeStore.set({ code: getArduinoCode(), boardType: microControllerType });
-    codeStore.subscribe((value) => {
-        console.log("Generated code is : \n" + value.code);
-    })
+    console.log('ccode = ', getArduinoCode())
 };
 
 export const addListener = (workspace: WorkspaceSvg) => {
