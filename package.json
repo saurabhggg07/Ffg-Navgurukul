@@ -21,7 +21,6 @@
     "@types/node": "^16.18.31",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
-    "@types/react-onclickoutside": "^6.7.4",
     "@uidotdev/usehooks": "^2.1.0",
     "avrgirl-arduino": "^5.0.1",
     "axios": "^1.4.0",
