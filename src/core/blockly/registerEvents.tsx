@@ -47,6 +47,10 @@ settingsStore.subscribe((newSettings) => {
         // only run if a workspace exists to generate code from
         if (getWorkspace()) {
             codeStore.set({ code: getArduinoCode(), boardType: settings.boardType });
+            codeStore.subscribe((value) => {
+                console.log("Generated code above is : " );
+                console.log(value.code);
+            })
         }
         return newFrameContainer;
     });

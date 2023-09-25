@@ -28,6 +28,9 @@ const BlocklyComponents = () => {
     const unsubscribes = [];
     let workspaceInitialize = false;
     const [loadEl,setLoadEl] = useState(0);
+    const [code, setCode] = useState(false)
+    const [simulator, setSimulator] = useState(false)
+    const [play, setPlay] = useState(false)
 
     useEffect(()=>{
         window.Blockly = Blockly;
@@ -53,11 +56,23 @@ const BlocklyComponents = () => {
         );
     },[loadEl])
 
+    const isCode = (data) => {
+        setCode(data);
+      }
+
+    const playSimulator = (data) => {
+        setSimulator(data)
+    }
+
+    const playfunc = (data) => {
+        setPlay(data)
+    }
+
     return (
         <React.Fragment>
-            <Header />           
+            <Header func={isCode} simulatorfunc={playSimulator} code={code} playfunc={playfunc} />           
             <div ref={blocklyElement} id="blocklyDiv" />  
-            <Slider />
+            <Slider func={isCode} code={code} simulator={simulator} simulatorfunc={playSimulator} play={play} playfunc={playfunc}/>
         </React.Fragment>)
 }
 
