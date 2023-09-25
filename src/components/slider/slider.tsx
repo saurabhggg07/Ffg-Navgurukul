@@ -13,9 +13,7 @@ function Slider(props) {
 
     function switch_menu() {
         setSimulator(!isSimulator);
-        // if (!isSimulator) {
-        //     stop();
-        // }
+        props.simulatorfunc(!isSimulator);
     }
 
     useEffect(() => {
@@ -25,9 +23,12 @@ function Slider(props) {
             if ((e.target as HTMLDivElement).id == 'overlay') {
                 overlay.style.display = 'none';
                 setSimulator(false);
+                props.simulatorfunc(false);
                 props.func(false);
+                props.playfunc(false);
             }
         }
+        setSimulator(props.simulator)
     });
 
     let code = "";
@@ -46,7 +47,7 @@ function Slider(props) {
                 </div>}
             {props.code || isSimulator ? <div id="overlay" /> : null}
             {props.code ?
-                <div id="popup" className="code_container">
+                <div className="code_container">
                     <pre className="line-numbers language-c">
                         <code className="language-c code">
                             {code}
@@ -54,9 +55,9 @@ function Slider(props) {
                     </pre >
                 </div > :
                 isSimulator ?
-                    <div id="popup" className="slider_container">
+                    <div className="slider_container">
                         <div className="container_box" />
-                        <SimulatorComponent />
+                        <SimulatorComponent play={props.play}/>
                     </div> :
                     null
             }

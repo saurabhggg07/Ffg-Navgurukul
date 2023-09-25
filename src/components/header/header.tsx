@@ -18,8 +18,13 @@ function Header(props) {
   const [arduinoCode, setArduinoCode] = useState("")
 
 
-  function handleChange() {
+  function handleCode() {
     props.func(!props.code);
+  }
+
+  function handleSimulator() {
+    props.simulatorfunc(true);
+    props.playfunc(true);
   }
 
   useEffect(() => {
@@ -86,11 +91,14 @@ function Header(props) {
       <div className="w3-bar-item w3-padding">
         <BiArrowBack onClick={logoutUser} />
       </div>
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleSimulator}>
+        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Play Simulator </div>
+      </div>
       <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleDownload}>
         <BiMicrochip />
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Code Burn </div>
       </div>
-      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleChange}>
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleCode}>
         {props.code ? <BsToggleOn /> : <BsToggleOff />}
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Enable Code View </div>
       </div>
