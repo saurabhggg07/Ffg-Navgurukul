@@ -1,6 +1,6 @@
 import Blockly, { BlockSvg } from 'blockly';
 
-Blockly['Arduino']['button_setup'] = function(block: BlockSvg) {
+Blockly['Arduino']['button_control'] = function(block: BlockSvg) {
   const pin = block.getFieldValue('PIN');
 
   Blockly['Arduino'].setupCode_['btn_pin_' + pin] =
