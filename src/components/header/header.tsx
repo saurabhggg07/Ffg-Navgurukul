@@ -43,6 +43,29 @@ function Header(props) {
 
   const history = useHistory();
 
+  const hexCodeGeneration = async () => {
+    let data
+    try {
+      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
+        method: "POST",
+        body: JSON.stringify({
+          code: arduinoCode
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8'
+        }
+      })
+      data = await resp.arrayBuffer();
+      Arduino.hexDataUploadToAndroidDevice(data)
+    } catch (e) {
+      setDialogText("Fetch failed")
+      console.log('Fetch failed ', e)
+      return
+    }
+    setDialogText("Fetch of hex file completed from server")
+    setFileArrayBuffer(data);
+  }
+
   const handleDownload = async () => {
     let data
     console.log('code = ', arduinoCode)
@@ -90,6 +113,9 @@ function Header(props) {
     <header className="w3-bar w3-top w3-light-green w3-text-black" style={{ height: "40px" }}>
       <div className="w3-bar-item w3-padding">
         <BiArrowBack onClick={logoutUser} />
+      </div>
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={hexCodeGeneration}>
+        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> HEX file generator </div>
       </div>
       <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleSimulator}>
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Play Simulator </div>
