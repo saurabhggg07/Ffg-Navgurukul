@@ -125,7 +125,7 @@ function SimulatorComponent(props) {
                 //         update(draw, currentFrame);
                 //     }
                 // }
-                document.getElementById("container").innerHTML = draw.svg()
+                if(document.getElementById("container") && document.getElementById("container").innerHTML)document.getElementById("container").innerHTML = draw.svg()
 
 
 
@@ -193,7 +193,7 @@ function SimulatorComponent(props) {
         <React.Fragment>
             <div ref={container} id="container" className="simulator" />
             <div className="simulatorIcons">
-                <div className="simulatorIcon"> 
+                <div className="simulatorIcon">
                     {showButton ? <BsFillStopCircleFill onClick={switch_button} className="individual" color="red" />
                         : <BsFillPlayCircleFill onClick={switch_button} id="play" className="individual" color="green" />}</div>
                 <div className="simulatorIcon">
