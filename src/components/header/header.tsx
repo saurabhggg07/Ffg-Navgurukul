@@ -17,8 +17,13 @@ function Header(props) {
     const [showDialog, toggleDialog] = useToggle(false);
     const [dialogText, setDialogText] = useState("");
 
-  function handleChange() {
-    setChecked(!checked)
+  function handleCode() {
+    props.func(!props.code);
+  }
+
+  function handleSimulator() {
+    props.simulatorfunc(true);
+    props.playfunc(true);
   }
 
   useEffect(() => {
