@@ -9,6 +9,14 @@ import { useToggle } from "@uidotdev/usehooks";
 import codeStore from "../../stores/code.store";
 import AvrgirlArduino from "avrgirl-arduino";
 
+declare global {
+  interface Window {
+    AndroidBridge: {
+      hexDataUploadToAndroidDevice: (data: string) => void;
+    };
+  }
+}
+
 function Header(props) {
   const dispatch = useDispatch();
   const [browserSupported, updateBrowserSupported] = useState(true);
@@ -56,8 +64,13 @@ function Header(props) {
         }
       })
       data = await resp.arrayBuffer();
-      Arduino.hexDataUploadToAndroidDevice(data)
-    } catch (e) {
+      var jsonData = JSON.stringify(Array.from(new Uint8Array(data)));
+
+      window.AndroidBridge.hexDataUploadToAndroidDevice(jsonData)
+      console.log('HexFile Data from API', data)
+      console.log('HexFile Data after covert json string', jsonData)
+    }
+    catch (e) {
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
       return
