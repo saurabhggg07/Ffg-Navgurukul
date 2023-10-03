@@ -9,13 +9,21 @@ import { useToggle } from "@uidotdev/usehooks";
 import codeStore from "../../stores/code.store";
 import AvrgirlArduino from "avrgirl-arduino";
 
+declare global {
+  interface Window {
+    AndroidBridge: {
+      hexDataUploadToAndroidDevice: (data: string) => void;
+    };
+  }
+}
+
 function Header(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-    const [browserSupported, updateBrowserSupported] = useState(true);
-    const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
-    const [showDialog, toggleDialog] = useToggle(false);
-    const [dialogText, setDialogText] = useState("");
+  const [browserSupported, updateBrowserSupported] = useState(true);
+  const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
+  const [showDialog, toggleDialog] = useToggle(false);
+  const [dialogText, setDialogText] = useState("");
 
   function handleCode() {
     props.func(!props.code);
@@ -32,7 +40,39 @@ function Header(props) {
 
   const history = useHistory();
 
-  const handleDownload = async() => {
+  const hexCodeGeneration = async () => {
+    let data
+    let arduinoCode
+    codeStore.subscribe(code => {
+      arduinoCode = code.code
+    })
+    console.log('arduinocode = ', arduinoCode)
+    try {
+      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
+        method: "POST",
+        body: JSON.stringify({
+          code: arduinoCode
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8'
+        }
+      })
+      data = await resp.arrayBuffer();
+      var jsonData = JSON.stringify(Array.from(new Uint8Array(data)));
+
+      console.log('HexFile Data from API', data)
+      console.log('HexFile Data after covert json string', jsonData)
+      window.AndroidBridge.hexDataUploadToAndroidDevice(jsonData)
+    }
+    catch (e) {
+      setDialogText("Fetch failed")
+      console.log('Fetch failed ', e)
+      return
+    }
+    setDialogText("Fetch of hex file completed from server")
+  }
+
+  const handleDownload = async () => {
     let data
     let arduinoCode
     codeStore.subscribe(code => {
@@ -83,6 +123,9 @@ function Header(props) {
     <header className="w3-bar w3-top w3-light-green w3-text-black" style={{ height: "40px" }}>
       <div className="w3-bar-item w3-padding">
         <BiArrowBack onClick={logoutUser} />
+      </div>
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={hexCodeGeneration}>
+        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> HEX file generator </div>
       </div>
       <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleSimulator}>
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Play Simulator </div>
