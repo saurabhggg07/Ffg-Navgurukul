@@ -19,12 +19,11 @@ declare global {
 
 function Header(props) {
   const dispatch = useDispatch();
-  const [browserSupported, updateBrowserSupported] = useState(true);
-  const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
-  const [showDialog, toggleDialog] = useToggle(false);
-  const [dialogText, setDialogText] = useState("");
-  const [arduinoCode, setArduinoCode] = useState("")
-
+  const [checked, setChecked] = useState(false);
+    const [browserSupported, updateBrowserSupported] = useState(true);
+    const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
+    const [showDialog, toggleDialog] = useToggle(false);
+    const [dialogText, setDialogText] = useState("");
 
   function handleCode() {
     props.func(!props.code);
@@ -36,17 +35,7 @@ function Header(props) {
   }
 
   useEffect(() => {
-    codeStore.subscribe(code => {
-      setArduinoCode(code.code)
-    })
     updateBrowserSupported('serial' in navigator);
-    // fetch('http://localhost:8080/get-code',{
-    //   method: "POST",
-    //   body: arduinoCode
-    // })
-    //     .then(res => {
-    //       console.log('res = ', res)
-    //     })
   }, [])
 
   const history = useHistory();
@@ -81,9 +70,13 @@ function Header(props) {
 
   const handleDownload = async () => {
     let data
-    console.log('code = ', arduinoCode)
-    try {
-      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
+    let arduinoCode
+    codeStore.subscribe(code => {
+      arduinoCode = code.code
+    })
+    console.log('arduinocode = ', arduinoCode)
+    try{
+      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code',{
         method: "POST",
         body: JSON.stringify({
           code: arduinoCode
