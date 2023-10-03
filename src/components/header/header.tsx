@@ -20,10 +20,10 @@ declare global {
 function Header(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-    const [browserSupported, updateBrowserSupported] = useState(true);
-    const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
-    const [showDialog, toggleDialog] = useToggle(false);
-    const [dialogText, setDialogText] = useState("");
+  const [browserSupported, updateBrowserSupported] = useState(true);
+  const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
+  const [showDialog, toggleDialog] = useToggle(false);
+  const [dialogText, setDialogText] = useState("");
 
   function handleCode() {
     props.func(!props.code);
@@ -42,6 +42,11 @@ function Header(props) {
 
   const hexCodeGeneration = async () => {
     let data
+    let arduinoCode
+    codeStore.subscribe(code => {
+      arduinoCode = code.code
+    })
+    console.log('arduinocode = ', arduinoCode)
     try {
       const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
         method: "POST",
@@ -55,9 +60,9 @@ function Header(props) {
       data = await resp.arrayBuffer();
       var jsonData = JSON.stringify(Array.from(new Uint8Array(data)));
 
-      window.AndroidBridge.hexDataUploadToAndroidDevice(jsonData)
       console.log('HexFile Data from API', data)
       console.log('HexFile Data after covert json string', jsonData)
+      window.AndroidBridge.hexDataUploadToAndroidDevice(jsonData)
     }
     catch (e) {
       setDialogText("Fetch failed")
@@ -65,7 +70,6 @@ function Header(props) {
       return
     }
     setDialogText("Fetch of hex file completed from server")
-    setFileArrayBuffer(data);
   }
 
   const handleDownload = async () => {
