@@ -8,6 +8,9 @@ import userAction from "../../redux/actions/user";
 import { useToggle } from "@uidotdev/usehooks";
 import codeStore from "../../stores/code.store";
 import AvrgirlArduino from "avrgirl-arduino";
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import './header.css';
 
 declare global {
   interface Window {
@@ -72,6 +75,23 @@ function Header(props) {
     setDialogText("Fetch of hex file completed from server")
   }
 
+  const createNotification = (type: string, error: string) => {
+    switch (type) {
+      case 's1':
+        NotificationManager.success('Flash done', "CODE BURN COMPLETE");
+        break;
+      case 's2':
+        NotificationManager.info('Fetch of hex file completed from server');
+        break;
+      case 's3':
+        NotificationManager.error('Fetch of hex file failed from server', error);
+        break;
+      case 's4':
+        NotificationManager.error(error, "ERROR");
+        break;
+    }
+  };
+
   const handleDownload = async () => {
     let data
     let arduinoCode
@@ -92,11 +112,14 @@ function Header(props) {
       data = await resp.arrayBuffer();
 
     } catch (e) {
+      e += '';
+      createNotification('s3', e);
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
       return
     }
 
+    createNotification('s2', 'nil');
     setDialogText("Fetch of hex file completed from server")
     setFileArrayBuffer(data);
     const avrgirl = new AvrgirlArduino({
@@ -104,8 +127,13 @@ function Header(props) {
       debug: true,
     });
     avrgirl.flash(data, error => {
-      if (error) console.log("error = ", error)
+      if (error) {
+        error += '';
+        createNotification('s4', error);
+        console.log("error = ", error);
+      }
       else {
+        createNotification('s1', 'nil');
         setDialogText("Flash done")
         console.log("flash done")
       }
@@ -124,20 +152,26 @@ function Header(props) {
       <div className="w3-bar-item w3-padding">
         <BiArrowBack onClick={logoutUser} />
       </div>
-      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={hexCodeGeneration}>
-        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> HEX file generator </div>
-      </div>
       <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleSimulator}>
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Play Simulator </div>
       </div>
-      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleDownload}>
-        <BiMicrochip />
-        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Code Burn </div>
+      <div className='show-on-mobile'>
+        <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={hexCodeGeneration}>
+          <BiMicrochip />
+          <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Code Burn(Android) </div>
+        </div>
+      </div>
+      <div className='hide-on-mobile'>
+        <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleDownload}>
+          <BiMicrochip />
+          <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Code Burn </div>
+        </div>
       </div>
       <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleCode}>
         {props.code ? <BsToggleOn /> : <BsToggleOff />}
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Enable Code View </div>
       </div>
+      <NotificationContainer />
     </header>
   )
 }
